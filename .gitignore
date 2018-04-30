@@ -1,0 +1,12 @@
+*.iml
+AgendaPlusPlus/.gradle
+AgendaPlusPlus/.idea
+AgendaPlusPlus/gradle
+AgendaPlusPlus/build
+AgendaPlusPlus/app/build
+AgendaPlusPlus/captures
+AgendaPlusPlus/local.properties
+AgendaPlusPlus/gradlew
+AgendaPlusPlus/gradlew.bat
+AgendaPlusPlus/.externalNativeBuild
+AgendaPlusPlus/.DS_Store
