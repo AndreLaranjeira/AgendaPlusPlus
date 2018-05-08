@@ -1,10 +1,11 @@
-# Kotlin-Language_analysis
+# AgendaPlusPlus
 
 ### Descrição:
 
-Uma análise teórica da linguagem de programação Kotlin acompanhada de um pequeno
-projeto de programação na linguagem. Trabalho final da disciplina Linguagens de
-programação 2018/1 da Universidade de Brasília.
+Um aplicativo programado em Kotlin para Android que visa permitir o
+gerenciamento de tarefas, projetos e afazeres tanto individuais como em grupos.
+Trabalho final da disciplina Linguagens de programação 2018/1 da Universidade
+de Brasília.
 
 ### Integrantes do grupo:
 
@@ -18,9 +19,6 @@ Victor André Gris Costa | 16/0019311
 
 ### Lista de tarefas:
 
-* Criar apresentação de slides;
-* Analisar usuário característico da linguagem;
-* Descrever aplicações tradicionais da linguagem;
 * Analisar a linguagem conforme os parâmetros de análise de uma linguagem de programação;
 * Comparar estruturas da linguagem Kotlin com as estruturas da linguagem mais próxima (Java para a parte de orientação a objetos e Hugs para a parte funcional):
   * Tipos e estruturas de dados;
@@ -32,4 +30,10 @@ Victor André Gris Costa | 16/0019311
   * Herança;
   * Polimorfismo;
   * Estruturas funcionais;
+* Programar as tarefas básicas do aplicativo;
+* Configurar as atividades do Android;
+* Configurar o servidor e a conexão entre agendas;
+* Refatorar o código;
+* Comentar e documentar o código;
+* Testar o aplicativo;
 * Ser aprovado com SS++!
