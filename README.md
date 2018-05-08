@@ -3,9 +3,9 @@
 ### Descrição:
 
 Um aplicativo programado em Kotlin para Android que visa permitir o
-gerenciamento de tarefas, projetos e afazeres tanto individuais como em grupos.
-Trabalho final da disciplina Linguagens de programação 2018/1 da Universidade
-de Brasília.
+gerenciamento de tarefas, projetos e afazeres tanto individuais como
+corporativos. Trabalho final da disciplina Linguagens de programação 2018/1 da
+Universidade de Brasília.
 
 ### Integrantes do grupo:
 
