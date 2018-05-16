@@ -2,7 +2,7 @@ package br.unb.bugstenio.agendaplusplus.model
 
 // Classe para representar uma agenda.
 
-class Agenda {
+class User {
 
     val items: List<Agendable> = emptyList()
 
