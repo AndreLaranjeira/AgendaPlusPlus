@@ -1,6 +1,6 @@
 package br.unb.bugstenio.agendaplusplus.model
 
-class Group {
+class Group(title: String, description: String, admin: User) {
 
     val users: List<User> = emptyList()
 
