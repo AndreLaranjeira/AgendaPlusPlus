@@ -4,10 +4,10 @@ import java.util.*
 
 // Classe de projetos (conjunto de tarefas e eventos que envolvam mais de uma pessoa).
 
-class Project(name: String, description: String, group: Group, admin: User) : Agendable(name,
+class Project(title: String, description: String, group: Group, admin: User) : Agendable(title,
               description) {
 
-    val tasks : List<Task> = emptyList()
-    val events : List<Event> = emptyList()
+    val tasks : MutableList<Task> = mutableListOf()
+    val events : MutableList<Event> = mutableListOf()
 
 }

@@ -6,6 +6,6 @@ import java.util.*
 
 class User(username: String, email: String, password: String, birth_date: Date) {
 
-    val items: List<Agendable> = emptyList()
+    val agenda: MutableList<Agendable> = mutableListOf()
 
 }
