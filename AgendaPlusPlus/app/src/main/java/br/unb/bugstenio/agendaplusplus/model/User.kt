@@ -2,7 +2,7 @@ package br.unb.bugstenio.agendaplusplus.model
 
 import java.util.*
 
-// Classe para representar uma agenda.
+// Classe para representar um usuário do aplicativo.
 
 class User(username: String, email: String, password: String, birth_date: Date) {
 
