@@ -10,3 +10,11 @@ AgendaPlusPlus/gradlew
 AgendaPlusPlus/gradlew.bat
 AgendaPlusPlus/.externalNativeBuild
 AgendaPlusPlus/.DS_Store
+
+AgendaServer/.gradle
+AgendaServer/.idea
+AgendaServer/gradle
+AgendaServer/build
+AgendaServer/out
+AgendaServer/gradlew
+AgendaServer/gradlew.bat
