@@ -21,12 +21,11 @@ object DatabaseFactory {
         // Database.connect("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", driver = "org.h2.Driver")
         Database.connect(hikari())
         transaction {
-            create(UserTasks)
-            UserTasks.insert {
-                it[id_task] = 1
-                it[task_title] = "Task de Teste"
+            User_Task.insert {
+                it[task_title] = "Task de Teste II"
                 it[task_description] = "Estamos testando o server"
-                it[task_limit] = DateTime.parse("2018-05-30 11:31:33", DateTimeFormat.forPattern("yyyy-mm-dd hh:mm:ss"))
+                it[task_limit] = DateTime.parse("2018-06-06 10:55:33", DateTimeFormat.forPattern("yyyy-mm-dd hh:mm:ss"))
+                it[fk_user] = 2
             }
         }
     }
@@ -34,7 +33,7 @@ object DatabaseFactory {
     private fun hikari(): HikariDataSource {
         val config = HikariConfig()
         config.driverClassName = "com.mysql.jdbc.Driver"
-        config.jdbcUrl = "jdbc:mysql://localhost:3306/agendaplusplus"
+        config.jdbcUrl = "jdbc:mysql://localhost:3306/AgendaPlusPlus"
         config.username = "Moas"
         config.password = "admin"
         config.maximumPoolSize = 3
