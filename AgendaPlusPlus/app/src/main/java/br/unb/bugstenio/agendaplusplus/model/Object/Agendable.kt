@@ -1,4 +1,4 @@
-package br.unb.bugstenio.agendaplusplus.model
+package br.unb.bugstenio.agendaplusplus.model.Object
 
 // Super classe de todos os itens que serão colocados na agenda.
 

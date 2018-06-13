@@ -1,0 +1,7 @@
+<resources>
+    <item name="ic_menu_calendar" type="drawable">@drawable/ic_menu_calendar</item>
+    <item name="ic_menu_tasks" type="drawable">@drawable/calendar_check</item>
+    <item name="ic_menu_events" type="drawable">@drawable/calendar_star</item>
+    <item name="ic_menu_projects" type="drawable">@drawable/notebook</item>
+    <item name="ic_menu_manage" type="drawable">@drawable/ic_settings</item>
+</resources>

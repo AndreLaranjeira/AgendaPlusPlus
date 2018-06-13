@@ -1,4 +1,4 @@
-package br.unb.bugstenio.agendaplusplus.model
+package br.unb.bugstenio.agendaplusplus.model.Object
 
 class Group(title: String, description: String, admins: MutableList<User>) {
 
