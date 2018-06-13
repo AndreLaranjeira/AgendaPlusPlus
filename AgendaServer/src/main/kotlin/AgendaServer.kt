@@ -20,6 +20,7 @@ fun Application.main() {
     install(Routing) {
         user(UserService())
         usertask(UserTaskService())
+        userevent(UserEventService())
         group(GroupService())
     }
 }
