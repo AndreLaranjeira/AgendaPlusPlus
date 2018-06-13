@@ -27,6 +27,7 @@ class UserTaskService {
                     it[task_title] = UserTask.task_title
                     it[task_description] = UserTask.task_description
                     it[task_limit] = UserTask.task_limit
+                    it[task_done] = UserTask.task_done
                     it[fk_user] = UserTask.fk_user
                 }
             }
@@ -41,6 +42,7 @@ class UserTaskService {
                 it[task_title] = UserTask.task_title
                 it[task_description] = UserTask.task_description
                 it[task_limit] = UserTask.task_limit
+                it[task_done] = UserTask.task_done
                 it[fk_user] = UserTask.fk_user
             }) get User_Task.id_task
         }
