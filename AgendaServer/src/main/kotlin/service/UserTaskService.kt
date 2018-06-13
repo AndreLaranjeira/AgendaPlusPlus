@@ -2,7 +2,6 @@ package service
 
 import model.*
 import org.jetbrains.exposed.sql.*
-import org.joda.time.DateTime
 import service.DatabaseFactory.dbQuery
 
 class UserTaskService {
