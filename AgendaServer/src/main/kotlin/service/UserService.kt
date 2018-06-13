@@ -2,7 +2,6 @@ package service
 
 import model.*
 import org.jetbrains.exposed.sql.*
-import org.joda.time.DateTime
 import service.DatabaseFactory.dbQuery
 
 class UserService {
@@ -18,37 +17,37 @@ class UserService {
                 .singleOrNull()
     }
 
-    suspend fun updateUser(UserUpdated: NewUser): UserDataClass {
-        val id = UserUpdated.id_user
+    suspend fun updateUser(userUpdated: NewUser): UserDataClass {
+        val id = userUpdated.id_user
         return if (id == null) {
-            addUser(UserUpdated)
+            addUser(userUpdated)
         } else {
             dbQuery {
                 User.update({ User.id_user eq id }) {
-                    it[username] = UserUpdated.username
-                    it[email] = UserUpdated.email
-                    it[password] = UserUpdated.password
-                    it[birth_date] = UserUpdated.birth_date
+                    it[username] = userUpdated.username
+                    it[email] = userUpdated.email
+                    it[password] = userUpdated.password
+                    it[birth_date] = userUpdated.birth_date
                 }
             }
             getUser(id)!!
         }
     }
 
-    suspend fun addUser(UserAdded: NewUser): UserDataClass {
+    suspend fun addUser(newUser: NewUser): UserDataClass {
         var key: Int? = 0
         dbQuery {
             key = User.insert({
-                it[username] = UserAdded.username
-                it[email] = UserAdded.email
-                it[password] = UserAdded.password
-                it[birth_date] = UserAdded.birth_date
+                it[username] = newUser.username
+                it[email] = newUser.email
+                it[password] = newUser.password
+                it[birth_date] = newUser.birth_date
             }) get User.id_user
         }
         return getUser(key!!)!!
     }
 
-    suspend fun deleteUserTask(id: Int): Boolean = dbQuery {
+    suspend fun deleteUser(id: Int): Boolean = dbQuery {
         User.deleteWhere { User.id_user eq id } > 0
     }
 

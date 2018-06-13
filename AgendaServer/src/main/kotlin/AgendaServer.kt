@@ -23,6 +23,7 @@ fun Application.main() {
     DatabaseFactory.init()
 
     install(Routing) {
+        user(UserService())
         usertask(UserTaskService())
     }
 }
