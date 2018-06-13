@@ -11,21 +11,6 @@ object User_Task : Table() {
     val task_done = datetime("task_done").nullable()
     val fk_user = integer("fk_user").references(User.id_user)
 }
-/*CREATE TABLE IF NOT EXISTS `AgendaPlusPlus`.`User_Task` (
-`id_task` BIGINT NOT NULL AUTO_INCREMENT,
-`task_title` VARCHAR(50) NOT NULL,
-`task_description` TEXT NOT NULL,
-`task_limit` DATETIME NULL,
-`task_done` DATETIME NULL,
-`fk_user` BIGINT NOT NULL,
-PRIMARY KEY (`id_task`),
-INDEX `fk_user_idx` (`fk_user` ASC),
-CONSTRAINT `fk_user_task`
-FOREIGN KEY (`fk_user`)
-REFERENCES `AgendaPlusPlus`.`User` (`id_user`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION)
-ENGINE = InnoDB;*/
 
 data class UserTask (
         val id_task : Int,
