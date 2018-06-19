@@ -24,6 +24,7 @@ fun Application.main() {
         group(GroupService())
         project(ProjectService())
         projecttask(ProjectTaskService())
+        projectevent(ProjectEventService())
     }
 }
 
@@ -31,5 +32,8 @@ fun Application.main() {
     Task list:
     TODO Optimize imports and argument names.
     TODO Fix project field is_active.
+    TODO Change PK variable type in Table classes.
+    TODO Test POST, PUT, DELETE requests.
+    TODO Refactor route names.
 
  */
