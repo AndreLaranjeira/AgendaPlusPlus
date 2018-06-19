@@ -22,5 +22,13 @@ fun Application.main() {
         usertask(UserTaskService())
         userevent(UserEventService())
         group(GroupService())
+        project(ProjectService())
     }
 }
+
+/*
+    Task list:
+    TODO Optimize imports and argument names.
+    TODO Fix project field is_active.
+
+ */
