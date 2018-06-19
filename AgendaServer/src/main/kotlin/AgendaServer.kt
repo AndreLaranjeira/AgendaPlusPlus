@@ -23,6 +23,7 @@ fun Application.main() {
         userevent(UserEventService())
         group(GroupService())
         project(ProjectService())
+        projecttask(ProjectTaskService())
     }
 }
 
