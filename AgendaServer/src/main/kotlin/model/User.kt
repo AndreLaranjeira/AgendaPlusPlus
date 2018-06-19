@@ -3,7 +3,7 @@ package model
 import org.jetbrains.exposed.sql.Table
 import org.joda.time.DateTime
 
-object User : Table(){
+object TB_User : Table(){
     val id_user = integer("id_user").primaryKey().autoIncrement()
     val username = varchar("username", 16)
     val email = varchar("email", 255)
@@ -11,7 +11,7 @@ object User : Table(){
     val birth_date = datetime("birth_date")
 }
 
-data class UserDataClass(
+data class User(
         val id_user : Int,
         val username : String,
         val email : String,

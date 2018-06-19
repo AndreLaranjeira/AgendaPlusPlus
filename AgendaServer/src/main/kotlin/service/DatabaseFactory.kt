@@ -17,7 +17,7 @@ object DatabaseFactory {
         // Test database transaction:
 
         /* transaction {
-            User_Task.insert {
+            TB_User_task.insert {
                 it[task_title] = "Task de Teste II"
                 it[task_description] = "Estamos testando o server"
                 it[task_limit] = DateTime.parse("2018-06-06 10:55:33", DateTimeFormat.forPattern("yyyy-mm-dd hh:mm:ss"))

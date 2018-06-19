@@ -7,12 +7,12 @@ import service.DatabaseFactory.dbQuery
 class UserTaskService {
 
     suspend fun getAllUserTasks(): List<UserTask> = dbQuery {
-        User_Task.selectAll().map { toUserTask(it) }
+        TB_User_task.selectAll().map { toUserTask(it) }
     }
 
     suspend fun getUserTask(id: Int): UserTask? = dbQuery {
-        User_Task.select {
-            (User_Task.id_task eq id)
+        TB_User_task.select {
+            (TB_User_task.id_task eq id)
         }.mapNotNull { toUserTask(it) }
                 .singleOrNull()
     }
@@ -23,7 +23,7 @@ class UserTaskService {
             addUserTask(UserTask)
         } else {
             dbQuery {
-                User_Task.update({ User_Task.id_task eq id }) {
+                TB_User_task.update({ TB_User_task.id_task eq id }) {
                     it[task_title] = UserTask.task_title
                     it[task_description] = UserTask.task_description
                     it[task_limit] = UserTask.task_limit
@@ -38,28 +38,28 @@ class UserTaskService {
     suspend fun addUserTask(UserTask: NewUserTask): UserTask {
         var key: Int? = 0
         dbQuery {
-            key = User_Task.insert({
+            key = TB_User_task.insert({
                 it[task_title] = UserTask.task_title
                 it[task_description] = UserTask.task_description
                 it[task_limit] = UserTask.task_limit
                 it[task_done] = UserTask.task_done
                 it[fk_user] = UserTask.fk_user
-            }) get User_Task.id_task
+            }) get TB_User_task.id_task
         }
         return getUserTask(key!!)!!
     }
 
     suspend fun deleteUserTask(id: Int): Boolean = dbQuery {
-        User_Task.deleteWhere { User_Task.id_task eq id } > 0
+        TB_User_task.deleteWhere { TB_User_task.id_task eq id } > 0
     }
 
     private fun toUserTask(row: ResultRow): UserTask =
             UserTask(
-                    id_task = row[User_Task.id_task],
-                    task_title = row[User_Task.task_title],
-                    task_description = row[User_Task.task_description],
-                    task_limit = row[User_Task.task_limit],
-                    task_done = row[User_Task.task_done],
-                    fk_user = row[User_Task.fk_user]
+                    id_task = row[TB_User_task.id_task],
+                    task_title = row[TB_User_task.task_title],
+                    task_description = row[TB_User_task.task_description],
+                    task_limit = row[TB_User_task.task_limit],
+                    task_done = row[TB_User_task.task_done],
+                    fk_user = row[TB_User_task.fk_user]
             )
 }

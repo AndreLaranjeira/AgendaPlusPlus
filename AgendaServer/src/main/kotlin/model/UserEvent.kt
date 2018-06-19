@@ -3,13 +3,13 @@ package model
 import org.jetbrains.exposed.sql.*
 import org.joda.time.DateTime
 
-object User_Event : Table() {
+object TB_User_event : Table() {
     val id_event = integer("id_event").primaryKey().autoIncrement()
     val event_title = varchar("event_title", 50)
     val event_description = text("event_description")
     val event_date = datetime("event_date")
     val event_notification = datetime("event_notification").nullable()
-    val fk_user = integer("fk_user").references(User.id_user)
+    val fk_user = integer("fk_user").references(TB_User.id_user)
 }
 
 data class UserEvent (

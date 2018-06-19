@@ -7,12 +7,12 @@ import service.DatabaseFactory.dbQuery
 class UserEventService {
 
     suspend fun getAllUserEvents(): List<UserEvent> = dbQuery {
-        User_Event.selectAll().map { toUserEvent(it) }
+        TB_User_event.selectAll().map { toUserEvent(it) }
     }
 
     suspend fun getUserEvent(id: Int): UserEvent? = dbQuery {
-        User_Event.select {
-            (User_Event.id_event eq id)
+        TB_User_event.select {
+            (TB_User_event.id_event eq id)
         }.mapNotNull { toUserEvent(it) }
                 .singleOrNull()
     }
@@ -23,7 +23,7 @@ class UserEventService {
             addUserEvent(UserEvent)
         } else {
             dbQuery {
-                User_Event.update({ User_Event.id_event eq id }) {
+                TB_User_event.update({ TB_User_event.id_event eq id }) {
                     it[event_title] = UserEvent.event_title
                     it[event_description] = UserEvent.event_description
                     it[event_date] = UserEvent.event_date
@@ -38,28 +38,28 @@ class UserEventService {
     suspend fun addUserEvent(UserEvent: NewUserEvent): UserEvent {
         var key: Int? = 0
         dbQuery {
-            key = User_Event.insert({
+            key = TB_User_event.insert({
                 it[event_title] = UserEvent.event_title
                 it[event_description] = UserEvent.event_description
                 it[event_date] = UserEvent.event_date
                 it[event_notification] = UserEvent.event_notification
                 it[fk_user] = UserEvent.fk_user
-            }) get User_Event.id_event
+            }) get TB_User_event.id_event
         }
         return getUserEvent(key!!)!!
     }
 
     suspend fun deleteUserEvent(id: Int): Boolean = dbQuery {
-        User_Event.deleteWhere { User_Event.id_event eq id } > 0
+        TB_User_event.deleteWhere { TB_User_event.id_event eq id } > 0
     }
 
     private fun toUserEvent(row: ResultRow): UserEvent =
             UserEvent(
-                    id_event = row[User_Event.id_event],
-                    event_title = row[User_Event.event_title],
-                    event_description = row[User_Event.event_description],
-                    event_date = row[User_Event.event_date],
-                    event_notification = row[User_Event.event_notification],
-                    fk_user = row[User_Event.fk_user]
+                    id_event = row[TB_User_event.id_event],
+                    event_title = row[TB_User_event.event_title],
+                    event_description = row[TB_User_event.event_description],
+                    event_date = row[TB_User_event.event_date],
+                    event_notification = row[TB_User_event.event_notification],
+                    fk_user = row[TB_User_event.fk_user]
             )
 }

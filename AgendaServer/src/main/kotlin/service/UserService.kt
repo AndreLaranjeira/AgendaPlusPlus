@@ -6,24 +6,24 @@ import service.DatabaseFactory.dbQuery
 
 class UserService {
 
-    suspend fun getAllUsers(): List<UserDataClass> = dbQuery {
-        User.selectAll().map { toUser(it) }
+    suspend fun getAllUsers(): List<User> = dbQuery {
+        TB_User.selectAll().map { toUser(it) }
     }
 
-    suspend fun getUser(id: Int): UserDataClass? = dbQuery {
-        User.select {
-            (User.id_user eq id)
+    suspend fun getUser(id: Int): User? = dbQuery {
+        TB_User.select {
+            (TB_User.id_user eq id)
         }.mapNotNull { toUser(it) }
                 .singleOrNull()
     }
 
-    suspend fun updateUser(userUpdated: NewUser): UserDataClass {
+    suspend fun updateUser(userUpdated: NewUser): User {
         val id = userUpdated.id_user
         return if (id == null) {
             addUser(userUpdated)
         } else {
             dbQuery {
-                User.update({ User.id_user eq id }) {
+                TB_User.update({ TB_User.id_user eq id }) {
                     it[username] = userUpdated.username
                     it[email] = userUpdated.email
                     it[password] = userUpdated.password
@@ -34,29 +34,29 @@ class UserService {
         }
     }
 
-    suspend fun addUser(newUser: NewUser): UserDataClass {
+    suspend fun addUser(newUser: NewUser): User {
         var key: Int? = 0
         dbQuery {
-            key = User.insert({
+            key = TB_User.insert({
                 it[username] = newUser.username
                 it[email] = newUser.email
                 it[password] = newUser.password
                 it[birth_date] = newUser.birth_date
-            }) get User.id_user
+            }) get TB_User.id_user
         }
         return getUser(key!!)!!
     }
 
     suspend fun deleteUser(id: Int): Boolean = dbQuery {
-        User.deleteWhere { User.id_user eq id } > 0
+        TB_User.deleteWhere { TB_User.id_user eq id } > 0
     }
 
-    private fun toUser(row: ResultRow): UserDataClass =
-            UserDataClass(
-                    id_user = row[User.id_user],
-                    username = row[User.username],
-                    email = row[User.email],
-                    password = row[User.password],
-                    birth_date = row[User.birth_date]
+    private fun toUser(row: ResultRow): User =
+            User(
+                    id_user = row[TB_User.id_user],
+                    username = row[TB_User.username],
+                    email = row[TB_User.email],
+                    password = row[TB_User.password],
+                    birth_date = row[TB_User.birth_date]
             )
 }
