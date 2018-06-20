@@ -4,8 +4,11 @@ import java.util.*
 
 // Classe para tarefas simples a serem agendadas.
 
-class Task(title: String, description: String, limitDate: Date) : Agendable(title, description) {
-
-    var finishedOn: Date? = null
-
-}
+data class Task(
+        val id: Long = 0,
+        val title: String,
+        val description: String,
+        val limitDate: Date? = null,
+        val taskDone : Date? = null,
+        val projectId: Long? = null
+)

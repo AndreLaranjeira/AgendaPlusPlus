@@ -1,6 +1,6 @@
 package br.unb.bugstenio.agendaplusplus.model.DAO
 
-import com.android.volley.*
+//import com.android.volley.*
 
 class UserDAO {
     /*
