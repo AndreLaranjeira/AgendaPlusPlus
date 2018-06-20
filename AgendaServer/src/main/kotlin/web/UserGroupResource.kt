@@ -8,11 +8,11 @@ import io.ktor.routing.*
 import model.NewUserGroup
 import service.UserGroupService
 
-fun Route.usergroup(userGroupService: UserGroupService) {
+fun Route.userGroup(userGroupService: UserGroupService) {
 
-    route("/usergroup") {
+    route("/user/group") {
 
-        get("/") {
+        get("/all") {
             call.respond(userGroupService.getAllUserGroups())
         }
 

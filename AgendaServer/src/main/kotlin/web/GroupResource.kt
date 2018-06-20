@@ -12,7 +12,7 @@ fun Route.group(groupService: GroupService) {
 
     route("/group") {
 
-        get("/") {
+        get("/all") {
             call.respond(groupService.getAllGroups())
         }
 

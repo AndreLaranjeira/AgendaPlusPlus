@@ -34,13 +34,13 @@ fun Application.main() {
 
     install(Routing) {
         user(UserService())
-        usertask(UserTaskService())
-        userevent(UserEventService())
+        userTask(UserTaskService())
+        userEvent(UserEventService())
         group(GroupService())
-        usergroup(UserGroupService())
+        userGroup(UserGroupService())
         project(ProjectService())
-        projecttask(ProjectTaskService())
-        projectevent(ProjectEventService())
+        projectTask(ProjectTaskService())
+        projectEvent(ProjectEventService())
     }
 }
 
@@ -50,6 +50,5 @@ fun Application.main() {
     TODO Fix project field is_active.
     TODO Change PK variable type in Table classes.
     TODO Test POST, PUT, DELETE requests.
-    TODO Refactor route names.
 
  */

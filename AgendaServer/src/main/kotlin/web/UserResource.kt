@@ -12,7 +12,7 @@ fun Route.user(userService: UserService) {
 
     route("/user") {
 
-        get("/") {
+        get("/all") {
             call.respond(userService.getAllUsers())
         }
 

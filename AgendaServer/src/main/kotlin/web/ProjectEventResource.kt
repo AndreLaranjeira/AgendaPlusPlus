@@ -8,11 +8,11 @@ import io.ktor.routing.*
 import model.NewProjectEvent
 import service.ProjectEventService
 
-fun Route.projectevent(projectEventService: ProjectEventService) {
+fun Route.projectEvent(projectEventService: ProjectEventService) {
 
-    route("/projectevent") {
+    route("/project/event") {
 
-        get("/") {
+        get("/all") {
             call.respond(projectEventService.getAllProjectEvents())
         }
 

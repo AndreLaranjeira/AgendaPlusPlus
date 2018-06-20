@@ -12,7 +12,7 @@ fun Route.project(projectService: ProjectService) {
 
     route("/project") {
 
-        get("/") {
+        get("/all") {
             call.respond(projectService.getAllProjects())
         }
 
