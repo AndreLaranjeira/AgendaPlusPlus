@@ -8,11 +8,11 @@ import io.ktor.routing.*
 import model.*
 import service.*
 
-fun Route.projecttask(projectTaskService: ProjectTaskService) {
+fun Route.projectTask(projectTaskService: ProjectTaskService) {
 
-    route("/projecttask") {
+    route("/project/task") {
 
-        get("/") {
+        get("/all") {
             call.respond(projectTaskService.getAllProjectTasks())
         }
 

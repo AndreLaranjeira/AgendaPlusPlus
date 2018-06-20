@@ -8,11 +8,11 @@ import io.ktor.routing.*
 import model.NewUserEvent
 import service.UserEventService
 
-fun Route.userevent(userEventService: UserEventService) {
+fun Route.userEvent(userEventService: UserEventService) {
 
-    route("/userevent") {
+    route("/user/event") {
 
-        get("/") {
+        get("/all") {
             call.respond(userEventService.getAllUserEvents())
         }
 

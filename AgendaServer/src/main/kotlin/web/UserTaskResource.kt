@@ -8,11 +8,11 @@ import io.ktor.routing.*
 import model.*
 import service.*
 
-fun Route.usertask(userTaskService: UserTaskService) {
+fun Route.userTask(userTaskService: UserTaskService) {
 
-    route("/usertask") {
+    route("/user/task") {
 
-        get("/") {
+        get("/all") {
             call.respond(userTaskService.getAllUserTasks())
         }
 
