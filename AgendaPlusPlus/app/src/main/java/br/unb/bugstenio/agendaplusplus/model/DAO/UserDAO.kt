@@ -1,11 +1,22 @@
 package br.unb.bugstenio.agendaplusplus.model.DAO
 
+import android.util.Log
+import br.unb.bugstenio.agendaplusplus.R
+import br.unb.bugstenio.agendaplusplus.model.Util.*
 import com.android.volley.*
+import com.android.volley.toolbox.*
+import org.json.*
 
 class UserDAO {
-    /*
-    * Esta classe deve acessar o banco de dados e processar os
-    * resultados em classes de dados que estão dentro da pasta
-    * Object
-    * */
+    val service = ServiceVolley()
+    val apiController = APIController(service)
+
+
+    fun createUser(){
+        val path = "/user/add/"
+        val params = JSONObject()
+
+        params.put("username", "teste")
+        params
+    }
 }
