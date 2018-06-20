@@ -37,6 +37,7 @@ fun Application.main() {
         usertask(UserTaskService())
         userevent(UserEventService())
         group(GroupService())
+        usergroup(UserGroupService())
         project(ProjectService())
         projecttask(ProjectTaskService())
         projectevent(ProjectEventService())
