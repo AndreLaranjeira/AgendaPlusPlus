@@ -4,8 +4,11 @@ import java.util.*
 
 // Classe para eventos a serem anotados na agenda.
 
-class Event(title: String, description: String, eventDate: Date) : Agendable(title, description) {
-
-    var notificationDate: Date? = null
-
-}
+data class Event(
+        val id: Long = 0,
+        val title: String,
+        val description: String,
+        val eventDate: Date,
+        val eventNotification: Date?,
+        val projectId: Long? = null
+)

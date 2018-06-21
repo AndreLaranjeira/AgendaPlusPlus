@@ -1,7 +1,7 @@
 package br.unb.bugstenio.agendaplusplus.model.Object
 
-class Group(title: String, description: String, admins: MutableList<User>) {
-
-    val users: MutableList<User> = mutableListOf()
-
-}
+data class Group(
+        val id: Long = 0,
+        val title: String,
+        val description: String? = null
+)

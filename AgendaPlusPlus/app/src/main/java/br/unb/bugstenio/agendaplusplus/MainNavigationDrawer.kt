@@ -10,8 +10,10 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_main_navigation_drawer.*
 import kotlinx.android.synthetic.main.content_main_navigation_drawer.*
+import java.util.*
 
-class MainNavigationDrawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainNavigationDrawer : AppCompatActivity(),
+        NavigationView.OnNavigationItemSelectedListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,12 @@ class MainNavigationDrawer : AppCompatActivity(), NavigationView.OnNavigationIte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        addPlaceholderFragment()
+        fragmentManager
+                .beginTransaction()
+                .replace(
+                        fragment_content.id,
+                        CalendarFragment())
+                .commit()
     }
 
     override fun onBackPressed() {
@@ -69,17 +76,6 @@ class MainNavigationDrawer : AppCompatActivity(), NavigationView.OnNavigationIte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
-    }
-
-    fun addPlaceholderFragment() {
-        fragmentManager
-                .beginTransaction()
-                .add(fragment_content.id, PlaceholderFragment().apply {
-                    arguments = Bundle().apply {
-                        putString("word","Calendar")
-                    }
-                })
-                .commit()
     }
 
     fun replacePlaceholderFragment(arg: String) {

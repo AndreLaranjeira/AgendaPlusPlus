@@ -4,8 +4,10 @@ import java.util.*
 
 // Classe para representar um usuário do aplicativo.
 
-class User(username: String, email: String, password: String, birth_date: Date) {
-
-    val agenda: MutableList<Agendable> = mutableListOf()
-
-}
+data class User(
+        val id: Long = 0,
+        val username: String,
+        val email: String,
+        val password: String,
+        val birth_date: Date
+)
