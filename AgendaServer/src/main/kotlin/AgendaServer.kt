@@ -2,6 +2,8 @@ import io.ktor.application.*
 import io.ktor.routing.*
 import io.ktor.features.*
 import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.datatype.joda.JodaModule
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException
 import io.ktor.content.TextContent
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
@@ -17,6 +19,7 @@ fun Application.main() {
     install(ContentNegotiation) {
         jackson {
             configure(SerializationFeature.INDENT_OUTPUT, true)
+            registerModule(JodaModule())
         }
     }
     install(StatusPages) {
@@ -24,11 +27,13 @@ fun Application.main() {
             call.respond(TextContent("HTTP Status code ${it.value}: ${it.description}",
                                      ContentType.Text.Plain.withCharset(Charsets.UTF_8), it))
         }
+        exception<MySQLIntegrityConstraintViolationException> {
+            _ -> call.respond(HttpStatusCode.Conflict)
+        }
         exception<Throwable> {
             _ -> call.respond(HttpStatusCode.InternalServerError)
         }
     }
-
 
     DatabaseFactory.init()
 
@@ -49,6 +54,5 @@ fun Application.main() {
     TODO Optimize imports and argument names.
     TODO Fix project field is_active.
     TODO Change PK variable type in Table classes.
-    TODO Test POST, PUT, DELETE requests.
 
  */
