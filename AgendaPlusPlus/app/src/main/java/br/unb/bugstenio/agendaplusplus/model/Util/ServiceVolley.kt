@@ -7,16 +7,16 @@ import org.json.*
 
 class ServiceVolley : ServiceInterface {
     val TAG = ServiceVolley::class.java.simpleName
-    val basePath = "https://localhost:8080"
+    val basePath = "localhost:8080"
 
     override fun post(path: String?, params: JSONObject, completionHandler: (response: JSONObject?) -> Unit) {
         val jsonObjReq = object : JsonObjectRequest(Method.POST, basePath + path, params,
                 Response.Listener<JSONObject> { response ->
-                    Log.d(TAG, "/post request OK! Response: $response")
+                    Log.d(TAG, "/POST request OK! Response: $response")
                     completionHandler(response)
                 },
                 Response.ErrorListener { error ->
-                    VolleyLog.e(TAG, "/post request fail! Error: ${error.message}")
+                    VolleyLog.e(TAG, "/POST request fail! Error: ${error.message}")
                     completionHandler(null)
                 }) {
             @Throws(AuthFailureError::class)
