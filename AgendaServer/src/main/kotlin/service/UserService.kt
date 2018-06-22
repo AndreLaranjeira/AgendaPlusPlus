@@ -17,17 +17,17 @@ class UserService {
                 .singleOrNull()
     }
 
-    suspend fun updateUser(userUpdated: NewUser): User {
-        val id = userUpdated.id_user
+    suspend fun updateUser(updatedUser: NewUser): User {
+        val id = updatedUser.id_user
         return if (id == null) {
-            addUser(userUpdated)
+            addUser(updatedUser)
         } else {
             dbQuery {
                 TB_User.update({ TB_User.id_user eq id }) {
-                    it[username] = userUpdated.username
-                    it[email] = userUpdated.email
-                    it[password] = userUpdated.password
-                    it[birth_date] = userUpdated.birth_date
+                    it[username] = updatedUser.username
+                    it[email] = updatedUser.email
+                    it[password] = updatedUser.password
+                    it[birth_date] = updatedUser.birth_date
                 }
             }
             getUser(id)!!

@@ -17,33 +17,33 @@ class ProjectEventService {
                 .singleOrNull()
     }
 
-    suspend fun updateProjectEvent(ProjectEvent: NewProjectEvent): ProjectEvent {
-        val id = ProjectEvent.id_event
+    suspend fun updateProjectEvent(updatedProjectEvent: NewProjectEvent): ProjectEvent {
+        val id = updatedProjectEvent.id_event
         return if (id == null) {
-            addProjectEvent(ProjectEvent)
+            addProjectEvent(updatedProjectEvent)
         } else {
             dbQuery {
                 TB_Project_event.update({ TB_Project_event.id_event eq id }) {
-                    it[event_title] = ProjectEvent.event_title
-                    it[event_description] = ProjectEvent.event_description
-                    it[event_date] = ProjectEvent.event_date
-                    it[event_notification] = ProjectEvent.event_notification
-                    it[fk_project] = ProjectEvent.fk_project
+                    it[event_title] = updatedProjectEvent.event_title
+                    it[event_description] = updatedProjectEvent.event_description
+                    it[event_date] = updatedProjectEvent.event_date
+                    it[event_notification] = updatedProjectEvent.event_notification
+                    it[fk_project] = updatedProjectEvent.fk_project
                 }
             }
             getProjectEvent(id)!!
         }
     }
 
-    suspend fun addProjectEvent(ProjectEvent: NewProjectEvent): ProjectEvent {
+    suspend fun addProjectEvent(newProjectEvent: NewProjectEvent): ProjectEvent {
         var key: Int? = 0
         dbQuery {
             key = TB_Project_event.insert({
-                it[event_title] = ProjectEvent.event_title
-                it[event_description] = ProjectEvent.event_description
-                it[event_date] = ProjectEvent.event_date
-                it[event_notification] = ProjectEvent.event_notification
-                it[fk_project] = ProjectEvent.fk_project
+                it[event_title] = newProjectEvent.event_title
+                it[event_description] = newProjectEvent.event_description
+                it[event_date] = newProjectEvent.event_date
+                it[event_notification] = newProjectEvent.event_notification
+                it[fk_project] = newProjectEvent.fk_project
             }) get TB_Project_event.id_event
         }
         return getProjectEvent(key!!)!!

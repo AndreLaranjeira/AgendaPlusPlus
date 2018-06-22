@@ -1,15 +1,15 @@
-import io.ktor.application.*
-import io.ktor.routing.*
-import io.ktor.features.*
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException
+import io.ktor.application.*
 import io.ktor.content.TextContent
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.withCharset
+import io.ktor.features.*
 import io.ktor.jackson.jackson
 import io.ktor.response.respond
+import io.ktor.routing.*
 import service.*
 import web.*
 
@@ -50,9 +50,8 @@ fun Application.main() {
 }
 
 /*
-    Task list:
-    TODO Optimize imports and argument names.
-    TODO Fix project field is_active.
-    TODO Change PK variable type in Table classes.
+    Future task list:
+    TODO Fix fields is_admin and is_active.
+    TODO Change PK variable type in Table classes from Int to Long.
 
  */

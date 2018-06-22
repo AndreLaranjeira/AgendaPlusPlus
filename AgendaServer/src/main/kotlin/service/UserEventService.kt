@@ -17,33 +17,33 @@ class UserEventService {
                 .singleOrNull()
     }
 
-    suspend fun updateUserEvent(UserEvent: NewUserEvent): UserEvent {
-        val id = UserEvent.id_event
+    suspend fun updateUserEvent(updatedUserEvent: NewUserEvent): UserEvent {
+        val id = updatedUserEvent.id_event
         return if (id == null) {
-            addUserEvent(UserEvent)
+            addUserEvent(updatedUserEvent)
         } else {
             dbQuery {
                 TB_User_event.update({ TB_User_event.id_event eq id }) {
-                    it[event_title] = UserEvent.event_title
-                    it[event_description] = UserEvent.event_description
-                    it[event_date] = UserEvent.event_date
-                    it[event_notification] = UserEvent.event_notification
-                    it[fk_user] = UserEvent.fk_user
+                    it[event_title] = updatedUserEvent.event_title
+                    it[event_description] = updatedUserEvent.event_description
+                    it[event_date] = updatedUserEvent.event_date
+                    it[event_notification] = updatedUserEvent.event_notification
+                    it[fk_user] = updatedUserEvent.fk_user
                 }
             }
             getUserEvent(id)!!
         }
     }
 
-    suspend fun addUserEvent(UserEvent: NewUserEvent): UserEvent {
+    suspend fun addUserEvent(newUserEvent: NewUserEvent): UserEvent {
         var key: Int? = 0
         dbQuery {
             key = TB_User_event.insert({
-                it[event_title] = UserEvent.event_title
-                it[event_description] = UserEvent.event_description
-                it[event_date] = UserEvent.event_date
-                it[event_notification] = UserEvent.event_notification
-                it[fk_user] = UserEvent.fk_user
+                it[event_title] = newUserEvent.event_title
+                it[event_description] = newUserEvent.event_description
+                it[event_date] = newUserEvent.event_date
+                it[event_notification] = newUserEvent.event_notification
+                it[fk_user] = newUserEvent.fk_user
             }) get TB_User_event.id_event
         }
         return getUserEvent(key!!)!!

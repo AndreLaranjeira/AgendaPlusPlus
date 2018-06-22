@@ -17,15 +17,15 @@ class GroupService {
                 .singleOrNull()
     }
 
-    suspend fun updateGroup(groupUpdated: NewGroup): Group {
-        val id = groupUpdated.id_group
+    suspend fun updateGroup(updatedGroup: NewGroup): Group {
+        val id = updatedGroup.id_group
         return if (id == null) {
-            addGroup(groupUpdated)
+            addGroup(updatedGroup)
         } else {
             dbQuery {
                 TB_Group.update({ TB_Group.id_group eq id }) {
-                    it[group_title] = groupUpdated.group_title
-                    it[group_description] = groupUpdated.group_description
+                    it[group_title] = updatedGroup.group_title
+                    it[group_description] = updatedGroup.group_description
                 }
             }
             getGroup(id)!!

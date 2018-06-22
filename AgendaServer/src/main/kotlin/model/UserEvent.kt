@@ -1,6 +1,6 @@
 package model
 
-import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.Table
 import org.joda.time.DateTime
 
 object TB_User_event : Table() {

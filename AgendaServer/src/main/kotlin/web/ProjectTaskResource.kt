@@ -5,8 +5,8 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.*
-import model.*
-import service.*
+import model.NewProjectTask
+import service.ProjectTaskService
 
 fun Route.projectTask(projectTaskService: ProjectTaskService) {
 

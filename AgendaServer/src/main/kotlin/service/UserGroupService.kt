@@ -17,18 +17,18 @@ class UserGroupService {
                 .singleOrNull()
     }
 
-    suspend fun updateUserGroup(groupUpdated: NewUserGroup): UserGroup {
-        val id_group = groupUpdated.fk_group
-        val id_user = groupUpdated.fk_user
+    suspend fun updateUserGroup(updatedUserGroup: NewUserGroup): UserGroup {
+        val id_group = updatedUserGroup.fk_group
+        val id_user = updatedUserGroup.fk_user
 
         return if(getUserGroup(id_group, id_user) == null)
-            addUserGroup(groupUpdated)!!
+            addUserGroup(updatedUserGroup)!!
 
         else {
 
             dbQuery {
                 TB_User_Group.update({ (TB_User_Group.fk_group eq id_group) and (TB_User_Group.fk_user eq id_user) }) {
-                    it[is_admin] = groupUpdated.is_admin
+                    it[is_admin] = updatedUserGroup.is_admin
                 }
             }
 

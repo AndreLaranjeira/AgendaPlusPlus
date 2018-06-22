@@ -17,33 +17,33 @@ class ProjectTaskService {
                 .singleOrNull()
     }
 
-    suspend fun updateProjectTask(ProjectTask: NewProjectTask): ProjectTask {
-        val id = ProjectTask.id_task
+    suspend fun updateProjectTask(updatedProjectTask: NewProjectTask): ProjectTask {
+        val id = updatedProjectTask.id_task
         return if (id == null) {
-            addProjectTask(ProjectTask)
+            addProjectTask(updatedProjectTask)
         } else {
             dbQuery {
                 TB_Project_task.update({ TB_Project_task.id_task eq id }) {
-                    it[task_title] = ProjectTask.task_title
-                    it[task_description] = ProjectTask.task_description
-                    it[task_limit] = ProjectTask.task_limit
-                    it[task_done] = ProjectTask.task_done
-                    it[fk_project] = ProjectTask.fk_project
+                    it[task_title] = updatedProjectTask.task_title
+                    it[task_description] = updatedProjectTask.task_description
+                    it[task_limit] = updatedProjectTask.task_limit
+                    it[task_done] = updatedProjectTask.task_done
+                    it[fk_project] = updatedProjectTask.fk_project
                 }
             }
             getProjectTask(id)!!
         }
     }
 
-    suspend fun addProjectTask(ProjectTask: NewProjectTask): ProjectTask {
+    suspend fun addProjectTask(newProjectTask: NewProjectTask): ProjectTask {
         var key: Int? = 0
         dbQuery {
             key = TB_Project_task.insert({
-                it[task_title] = ProjectTask.task_title
-                it[task_description] = ProjectTask.task_description
-                it[task_limit] = ProjectTask.task_limit
-                it[task_done] = ProjectTask.task_done
-                it[fk_project] = ProjectTask.fk_project
+                it[task_title] = newProjectTask.task_title
+                it[task_description] = newProjectTask.task_description
+                it[task_limit] = newProjectTask.task_limit
+                it[task_done] = newProjectTask.task_done
+                it[fk_project] = newProjectTask.fk_project
             }) get TB_Project_task.id_task
         }
         return getProjectTask(key!!)!!

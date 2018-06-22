@@ -19,18 +19,18 @@ class ProjectService {
                 .singleOrNull()
     }
 
-    suspend fun updateProject(projectUpdated: NewProject): Project {
-        val id = projectUpdated.id_project
+    suspend fun updateProject(updatedProject: NewProject): Project {
+        val id = updatedProject.id_project
         return if (id == null) {
-            addProject(projectUpdated)
+            addProject(updatedProject)
         } else {
             dbQuery {
                 TB_Project.update({ TB_Project.id_project eq id }) {
-                    it[project_title] = projectUpdated.project_title
-                    it[project_description] = projectUpdated.project_description
-                    it[is_active] = projectUpdated.is_active
-                    it[fk_group] = projectUpdated.fk_group
-                    it[fk_admin] = projectUpdated.fk_admin
+                    it[project_title] = updatedProject.project_title
+                    it[project_description] = updatedProject.project_description
+                    it[is_active] = updatedProject.is_active
+                    it[fk_group] = updatedProject.fk_group
+                    it[fk_admin] = updatedProject.fk_admin
                 }
             }
             getProject(id)!!
