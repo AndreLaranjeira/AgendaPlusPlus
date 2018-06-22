@@ -52,6 +52,5 @@ fun Application.main() {
 /*
     Future task list:
     TODO Fix fields is_admin and is_active.
-    TODO Change PK variable type in Table classes from Int to Long.
 
  */

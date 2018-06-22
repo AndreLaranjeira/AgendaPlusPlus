@@ -17,7 +17,7 @@ fun Route.group(groupService: GroupService) {
         }
 
         get("/{id}") {
-            val group = groupService.getGroup(call.parameters["id"]?.toInt()!!)
+            val group = groupService.getGroup(call.parameters["id"]?.toLong()!!)
             if (group == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(group)
         }
@@ -33,7 +33,7 @@ fun Route.group(groupService: GroupService) {
         }
 
         delete("/{id}") {
-            val removed = groupService.deleteGroup(call.parameters["id"]?.toInt()!!)
+            val removed = groupService.deleteGroup(call.parameters["id"]?.toLong()!!)
             if (removed) call.respond(HttpStatusCode.OK)
             else call.respond(HttpStatusCode.NotFound)
         }

@@ -17,7 +17,7 @@ fun Route.projectEvent(projectEventService: ProjectEventService) {
         }
 
         get("/{id}") {
-            val projectEvent = projectEventService.getProjectEvent(call.parameters["id"]?.toInt()!!)
+            val projectEvent = projectEventService.getProjectEvent(call.parameters["id"]?.toLong()!!)
             if (projectEvent == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(projectEvent)
         }
@@ -33,7 +33,7 @@ fun Route.projectEvent(projectEventService: ProjectEventService) {
         }
 
         delete("/{id}") {
-            val removed = projectEventService.deleteProjectEvent(call.parameters["id"]?.toInt()!!)
+            val removed = projectEventService.deleteProjectEvent(call.parameters["id"]?.toLong()!!)
             if (removed) call.respond(HttpStatusCode.OK)
             else call.respond(HttpStatusCode.NotFound)
         }

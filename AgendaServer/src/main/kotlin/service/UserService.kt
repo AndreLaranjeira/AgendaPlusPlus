@@ -10,7 +10,7 @@ class UserService {
         TB_User.selectAll().map { toUser(it) }
     }
 
-    suspend fun getUser(id: Int): User? = dbQuery {
+    suspend fun getUser(id: Long): User? = dbQuery {
         TB_User.select {
             (TB_User.id_user eq id)
         }.mapNotNull { toUser(it) }
@@ -35,7 +35,7 @@ class UserService {
     }
 
     suspend fun addUser(newUser: NewUser): User {
-        var key: Int? = 0
+        var key: Long? = 0
         dbQuery {
             key = TB_User.insert({
                 it[username] = newUser.username
@@ -47,7 +47,7 @@ class UserService {
         return getUser(key!!)!!
     }
 
-    suspend fun deleteUser(id: Int): Boolean = dbQuery {
+    suspend fun deleteUser(id: Long): Boolean = dbQuery {
         TB_User.deleteWhere { TB_User.id_user eq id } > 0
     }
 

@@ -10,7 +10,7 @@ class UserTaskService {
         TB_User_task.selectAll().map { toUserTask(it) }
     }
 
-    suspend fun getUserTask(id: Int): UserTask? = dbQuery {
+    suspend fun getUserTask(id: Long): UserTask? = dbQuery {
         TB_User_task.select {
             (TB_User_task.id_task eq id)
         }.mapNotNull { toUserTask(it) }
@@ -36,7 +36,7 @@ class UserTaskService {
     }
 
     suspend fun addUserTask(newUserTask: NewUserTask): UserTask {
-        var key: Int? = 0
+        var key: Long? = 0
         dbQuery {
             key = TB_User_task.insert({
                 it[task_title] = newUserTask.task_title
@@ -49,7 +49,7 @@ class UserTaskService {
         return getUserTask(key!!)!!
     }
 
-    suspend fun deleteUserTask(id: Int): Boolean = dbQuery {
+    suspend fun deleteUserTask(id: Long): Boolean = dbQuery {
         TB_User_task.deleteWhere { TB_User_task.id_task eq id } > 0
     }
 

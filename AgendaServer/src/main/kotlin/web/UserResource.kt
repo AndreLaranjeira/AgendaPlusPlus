@@ -17,7 +17,7 @@ fun Route.user(userService: UserService) {
         }
 
         get("/{id}") {
-            val user = userService.getUser(call.parameters["id"]?.toInt()!!)
+            val user = userService.getUser(call.parameters["id"]?.toLong()!!)
             if (user == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(user)
         }
@@ -33,7 +33,7 @@ fun Route.user(userService: UserService) {
         }
 
         delete("/{id}") {
-            val removed = userService.deleteUser(call.parameters["id"]?.toInt()!!)
+            val removed = userService.deleteUser(call.parameters["id"]?.toLong()!!)
             if (removed) call.respond(HttpStatusCode.OK)
             else call.respond(HttpStatusCode.NotFound)
         }

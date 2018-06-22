@@ -10,7 +10,7 @@ class UserGroupService {
         TB_User_Group.selectAll().map { toUserGroup(it) }
     }
 
-    suspend fun getUserGroup(id_group: Int, id_user: Int): UserGroup? = dbQuery {
+    suspend fun getUserGroup(id_group: Long, id_user: Long): UserGroup? = dbQuery {
         TB_User_Group.select {
             (TB_User_Group.fk_group eq id_group) and (TB_User_Group.fk_user eq id_user)
         }.mapNotNull { toUserGroup(it) }
@@ -39,8 +39,8 @@ class UserGroupService {
     }
 
     suspend fun addUserGroup(newUserGroup: NewUserGroup): UserGroup? {
-        val group_key: Int = newUserGroup.fk_group
-        val user_key: Int = newUserGroup.fk_user
+        val group_key: Long = newUserGroup.fk_group
+        val user_key: Long = newUserGroup.fk_user
 
         return if(getUserGroup(group_key, user_key) == null) {
 
@@ -61,7 +61,7 @@ class UserGroupService {
 
     }
 
-    suspend fun deleteUserGroup(id_group: Int, id_user: Int): Boolean = dbQuery {
+    suspend fun deleteUserGroup(id_group: Long, id_user: Long): Boolean = dbQuery {
         TB_User_Group.deleteWhere { (TB_User_Group.fk_group eq id_group) and (TB_User_Group.fk_user eq id_user) } > 0
     }
 

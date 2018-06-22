@@ -10,7 +10,7 @@ class ProjectEventService {
         TB_Project_event.selectAll().map { toProjectEvent(it) }
     }
 
-    suspend fun getProjectEvent(id: Int): ProjectEvent? = dbQuery {
+    suspend fun getProjectEvent(id: Long): ProjectEvent? = dbQuery {
         TB_Project_event.select {
             (TB_Project_event.id_event eq id)
         }.mapNotNull { toProjectEvent(it) }
@@ -36,7 +36,7 @@ class ProjectEventService {
     }
 
     suspend fun addProjectEvent(newProjectEvent: NewProjectEvent): ProjectEvent {
-        var key: Int? = 0
+        var key: Long? = 0
         dbQuery {
             key = TB_Project_event.insert({
                 it[event_title] = newProjectEvent.event_title
@@ -49,7 +49,7 @@ class ProjectEventService {
         return getProjectEvent(key!!)!!
     }
 
-    suspend fun deleteProjectEvent(id: Int): Boolean = dbQuery {
+    suspend fun deleteProjectEvent(id: Long): Boolean = dbQuery {
         TB_Project_event.deleteWhere { TB_Project_event.id_event eq id } > 0
     }
 

@@ -17,7 +17,7 @@ fun Route.project(projectService: ProjectService) {
         }
 
         get("/{id}") {
-            val project = projectService.getProject(call.parameters["id"]?.toInt()!!)
+            val project = projectService.getProject(call.parameters["id"]?.toLong()!!)
             if (project == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(project)
         }
@@ -33,7 +33,7 @@ fun Route.project(projectService: ProjectService) {
         }
 
         delete("/{id}") {
-            val removed = projectService.deleteProject(call.parameters["id"]?.toInt()!!)
+            val removed = projectService.deleteProject(call.parameters["id"]?.toLong()!!)
             if (removed) call.respond(HttpStatusCode.OK)
             else call.respond(HttpStatusCode.NotFound)
         }

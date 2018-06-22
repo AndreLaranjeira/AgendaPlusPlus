@@ -10,7 +10,7 @@ class ProjectTaskService {
         TB_Project_task.selectAll().map { toProjectTask(it) }
     }
 
-    suspend fun getProjectTask(id: Int): ProjectTask? = dbQuery {
+    suspend fun getProjectTask(id: Long): ProjectTask? = dbQuery {
         TB_Project_task.select {
             (TB_Project_task.id_task eq id)
         }.mapNotNull { toProjectTask(it) }
@@ -36,7 +36,7 @@ class ProjectTaskService {
     }
 
     suspend fun addProjectTask(newProjectTask: NewProjectTask): ProjectTask {
-        var key: Int? = 0
+        var key: Long? = 0
         dbQuery {
             key = TB_Project_task.insert({
                 it[task_title] = newProjectTask.task_title
@@ -49,7 +49,7 @@ class ProjectTaskService {
         return getProjectTask(key!!)!!
     }
 
-    suspend fun deleteProjectTask(id: Int): Boolean = dbQuery {
+    suspend fun deleteProjectTask(id: Long): Boolean = dbQuery {
         TB_Project_task.deleteWhere { TB_Project_task.id_task eq id } > 0
     }
 

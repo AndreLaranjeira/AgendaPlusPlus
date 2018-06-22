@@ -12,7 +12,7 @@ class ProjectService {
         TB_Project.selectAll().map { toProject(it) }
     }
 
-    suspend fun getProject(id: Int): Project? = dbQuery {
+    suspend fun getProject(id: Long): Project? = dbQuery {
         TB_Project.select {
             (TB_Project.id_project eq id)
         }.mapNotNull { toProject(it) }
@@ -38,7 +38,7 @@ class ProjectService {
     }
 
     suspend fun addProject(newProject: NewProject): Project {
-        var key: Int? = 0
+        var key: Long? = 0
         dbQuery {
             key = TB_Project.insert({
                 it[project_title] = newProject.project_title
@@ -51,7 +51,7 @@ class ProjectService {
         return getProject(key!!)!!
     }
 
-    suspend fun deleteProject(id: Int): Boolean = dbQuery {
+    suspend fun deleteProject(id: Long): Boolean = dbQuery {
         TB_Project.deleteWhere { TB_Project.id_project eq id } > 0
     }
 

@@ -10,7 +10,7 @@ class UserEventService {
         TB_User_event.selectAll().map { toUserEvent(it) }
     }
 
-    suspend fun getUserEvent(id: Int): UserEvent? = dbQuery {
+    suspend fun getUserEvent(id: Long): UserEvent? = dbQuery {
         TB_User_event.select {
             (TB_User_event.id_event eq id)
         }.mapNotNull { toUserEvent(it) }
@@ -36,7 +36,7 @@ class UserEventService {
     }
 
     suspend fun addUserEvent(newUserEvent: NewUserEvent): UserEvent {
-        var key: Int? = 0
+        var key: Long? = 0
         dbQuery {
             key = TB_User_event.insert({
                 it[event_title] = newUserEvent.event_title
@@ -49,7 +49,7 @@ class UserEventService {
         return getUserEvent(key!!)!!
     }
 
-    suspend fun deleteUserEvent(id: Int): Boolean = dbQuery {
+    suspend fun deleteUserEvent(id: Long): Boolean = dbQuery {
         TB_User_event.deleteWhere { TB_User_event.id_event eq id } > 0
     }
 
