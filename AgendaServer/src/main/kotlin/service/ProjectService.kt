@@ -12,25 +12,25 @@ class ProjectService {
         TB_Project.selectAll().map { toProject(it) }
     }
 
-    suspend fun getProject(id: Int): Project? = dbQuery {
+    suspend fun getProject(id: Long): Project? = dbQuery {
         TB_Project.select {
             (TB_Project.id_project eq id)
         }.mapNotNull { toProject(it) }
                 .singleOrNull()
     }
 
-    suspend fun updateProject(projectUpdated: NewProject): Project {
-        val id = projectUpdated.id_project
+    suspend fun updateProject(updatedProject: NewProject): Project {
+        val id = updatedProject.id_project
         return if (id == null) {
-            addProject(projectUpdated)
+            addProject(updatedProject)
         } else {
             dbQuery {
                 TB_Project.update({ TB_Project.id_project eq id }) {
-                    it[project_title] = projectUpdated.project_title
-                    it[project_description] = projectUpdated.project_description
-                    it[is_active] = projectUpdated.is_active
-                    it[fk_group] = projectUpdated.fk_group
-                    it[fk_admin] = projectUpdated.fk_admin
+                    it[project_title] = updatedProject.project_title
+                    it[project_description] = updatedProject.project_description
+                    it[is_active] = updatedProject.is_active
+                    it[fk_group] = updatedProject.fk_group
+                    it[fk_admin] = updatedProject.fk_admin
                 }
             }
             getProject(id)!!
@@ -38,7 +38,7 @@ class ProjectService {
     }
 
     suspend fun addProject(newProject: NewProject): Project {
-        var key: Int? = 0
+        var key: Long? = 0
         dbQuery {
             key = TB_Project.insert({
                 it[project_title] = newProject.project_title
@@ -51,7 +51,7 @@ class ProjectService {
         return getProject(key!!)!!
     }
 
-    suspend fun deleteProject(id: Int): Boolean = dbQuery {
+    suspend fun deleteProject(id: Long): Boolean = dbQuery {
         TB_Project.deleteWhere { TB_Project.id_project eq id } > 0
     }
 

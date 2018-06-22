@@ -10,22 +10,22 @@ class GroupService {
         TB_Group.selectAll().map { toGroup(it) }
     }
 
-    suspend fun getGroup(id: Int): Group? = dbQuery {
+    suspend fun getGroup(id: Long): Group? = dbQuery {
         TB_Group.select {
             (TB_Group.id_group eq id)
         }.mapNotNull { toGroup(it) }
                 .singleOrNull()
     }
 
-    suspend fun updateGroup(groupUpdated: NewGroup): Group {
-        val id = groupUpdated.id_group
+    suspend fun updateGroup(updatedGroup: NewGroup): Group {
+        val id = updatedGroup.id_group
         return if (id == null) {
-            addGroup(groupUpdated)
+            addGroup(updatedGroup)
         } else {
             dbQuery {
                 TB_Group.update({ TB_Group.id_group eq id }) {
-                    it[group_title] = groupUpdated.group_title
-                    it[group_description] = groupUpdated.group_description
+                    it[group_title] = updatedGroup.group_title
+                    it[group_description] = updatedGroup.group_description
                 }
             }
             getGroup(id)!!
@@ -33,7 +33,7 @@ class GroupService {
     }
 
     suspend fun addGroup(newGroup: NewGroup): Group {
-        var key: Int? = 0
+        var key: Long? = 0
         dbQuery {
             key = model.TB_Group.insert({
                 it[group_title] = newGroup.group_title
@@ -43,7 +43,7 @@ class GroupService {
         return getGroup(key!!)!!
     }
 
-    suspend fun deleteGroup(id: Int): Boolean = dbQuery {
+    suspend fun deleteGroup(id: Long): Boolean = dbQuery {
         TB_Group.deleteWhere { TB_Group.id_group eq id } > 0
     }
 

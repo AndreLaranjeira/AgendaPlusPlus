@@ -5,8 +5,8 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.*
-import model.*
-import service.*
+import model.NewProjectTask
+import service.ProjectTaskService
 
 fun Route.projectTask(projectTaskService: ProjectTaskService) {
 
@@ -17,7 +17,7 @@ fun Route.projectTask(projectTaskService: ProjectTaskService) {
         }
 
         get("/{id}") {
-            val projectTask = projectTaskService.getProjectTask(call.parameters["id"]?.toInt()!!)
+            val projectTask = projectTaskService.getProjectTask(call.parameters["id"]?.toLong()!!)
             if (projectTask == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(projectTask)
         }
@@ -33,7 +33,7 @@ fun Route.projectTask(projectTaskService: ProjectTaskService) {
         }
 
         delete("/{id}") {
-            val removed = projectTaskService.deleteProjectTask(call.parameters["id"]?.toInt()!!)
+            val removed = projectTaskService.deleteProjectTask(call.parameters["id"]?.toLong()!!)
             if (removed) call.respond(HttpStatusCode.OK)
             else call.respond(HttpStatusCode.NotFound)
         }

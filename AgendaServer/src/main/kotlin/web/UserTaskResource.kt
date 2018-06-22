@@ -5,8 +5,8 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.*
-import model.*
-import service.*
+import model.NewUserTask
+import service.UserTaskService
 
 fun Route.userTask(userTaskService: UserTaskService) {
 
@@ -17,7 +17,7 @@ fun Route.userTask(userTaskService: UserTaskService) {
         }
 
         get("/{id}") {
-            val userTask = userTaskService.getUserTask(call.parameters["id"]?.toInt()!!)
+            val userTask = userTaskService.getUserTask(call.parameters["id"]?.toLong()!!)
             if (userTask == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(userTask)
         }
@@ -33,7 +33,7 @@ fun Route.userTask(userTaskService: UserTaskService) {
         }
 
         delete("/{id}") {
-            val removed = userTaskService.deleteUserTask(call.parameters["id"]?.toInt()!!)
+            val removed = userTaskService.deleteUserTask(call.parameters["id"]?.toLong()!!)
             if (removed) call.respond(HttpStatusCode.OK)
             else call.respond(HttpStatusCode.NotFound)
         }

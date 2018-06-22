@@ -10,24 +10,24 @@ class UserService {
         TB_User.selectAll().map { toUser(it) }
     }
 
-    suspend fun getUser(id: Int): User? = dbQuery {
+    suspend fun getUser(id: Long): User? = dbQuery {
         TB_User.select {
             (TB_User.id_user eq id)
         }.mapNotNull { toUser(it) }
                 .singleOrNull()
     }
 
-    suspend fun updateUser(userUpdated: NewUser): User {
-        val id = userUpdated.id_user
+    suspend fun updateUser(updatedUser: NewUser): User {
+        val id = updatedUser.id_user
         return if (id == null) {
-            addUser(userUpdated)
+            addUser(updatedUser)
         } else {
             dbQuery {
                 TB_User.update({ TB_User.id_user eq id }) {
-                    it[username] = userUpdated.username
-                    it[email] = userUpdated.email
-                    it[password] = userUpdated.password
-                    it[birth_date] = userUpdated.birth_date
+                    it[username] = updatedUser.username
+                    it[email] = updatedUser.email
+                    it[password] = updatedUser.password
+                    it[birth_date] = updatedUser.birth_date
                 }
             }
             getUser(id)!!
@@ -35,7 +35,7 @@ class UserService {
     }
 
     suspend fun addUser(newUser: NewUser): User {
-        var key: Int? = 0
+        var key: Long? = 0
         dbQuery {
             key = TB_User.insert({
                 it[username] = newUser.username
@@ -47,7 +47,7 @@ class UserService {
         return getUser(key!!)!!
     }
 
-    suspend fun deleteUser(id: Int): Boolean = dbQuery {
+    suspend fun deleteUser(id: Long): Boolean = dbQuery {
         TB_User.deleteWhere { TB_User.id_user eq id } > 0
     }
 

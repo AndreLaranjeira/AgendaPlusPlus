@@ -17,7 +17,7 @@ fun Route.userEvent(userEventService: UserEventService) {
         }
 
         get("/{id}") {
-            val userEvent = userEventService.getUserEvent(call.parameters["id"]?.toInt()!!)
+            val userEvent = userEventService.getUserEvent(call.parameters["id"]?.toLong()!!)
             if (userEvent == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(userEvent)
         }
@@ -33,7 +33,7 @@ fun Route.userEvent(userEventService: UserEventService) {
         }
 
         delete("/{id}") {
-            val removed = userEventService.deleteUserEvent(call.parameters["id"]?.toInt()!!)
+            val removed = userEventService.deleteUserEvent(call.parameters["id"]?.toLong()!!)
             if (removed) call.respond(HttpStatusCode.OK)
             else call.respond(HttpStatusCode.NotFound)
         }

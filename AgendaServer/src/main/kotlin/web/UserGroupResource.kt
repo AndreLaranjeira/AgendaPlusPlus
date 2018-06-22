@@ -17,8 +17,8 @@ fun Route.userGroup(userGroupService: UserGroupService) {
         }
 
         get("/{id_group}/{id_user}") {
-            val usergroup = userGroupService.getUserGroup(call.parameters["id_group"]?.toInt()!!,
-                                                          call.parameters["id_user"]?.toInt()!!)
+            val usergroup = userGroupService.getUserGroup(call.parameters["id_group"]?.toLong()!!,
+                                                          call.parameters["id_user"]?.toLong()!!)
             if (usergroup == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(usergroup)
         }
@@ -35,8 +35,8 @@ fun Route.userGroup(userGroupService: UserGroupService) {
         }
 
         delete("/{id_group}/{id_user}") {
-            val removed = userGroupService.deleteUserGroup(call.parameters["id_group"]?.toInt()!!,
-                                                           call.parameters["id_user"]?.toInt()!!)
+            val removed = userGroupService.deleteUserGroup(call.parameters["id_group"]?.toLong()!!,
+                                                           call.parameters["id_user"]?.toLong()!!)
             if (removed) call.respond(HttpStatusCode.OK)
             else call.respond(HttpStatusCode.NotFound)
         }
