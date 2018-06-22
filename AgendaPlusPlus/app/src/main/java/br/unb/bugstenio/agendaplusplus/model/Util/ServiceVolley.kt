@@ -7,7 +7,7 @@ import org.json.*
 
 class ServiceVolley : ServiceInterface {
     val TAG = ServiceVolley::class.java.simpleName
-    val basePath = "localhost:8080"
+    val basePath = "http://192.168.15.127:8080"
 
     override fun post(path: String?, params: JSONObject, completionHandler: (response: JSONObject?) -> Unit) {
         val jsonObjReq = object : JsonObjectRequest(Method.POST, basePath + path, params,

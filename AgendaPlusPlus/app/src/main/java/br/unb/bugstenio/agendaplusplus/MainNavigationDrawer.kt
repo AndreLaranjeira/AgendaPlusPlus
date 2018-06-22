@@ -10,7 +10,10 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_main_navigation_drawer.*
 import kotlinx.android.synthetic.main.content_main_navigation_drawer.*
-import java.util.*
+
+import br.unb.bugstenio.agendaplusplus.model.DAO.*
+import br.unb.bugstenio.agendaplusplus.model.Object.*
+import org.joda.time.*
 
 class MainNavigationDrawer : AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener{
@@ -53,6 +56,9 @@ class MainNavigationDrawer : AppCompatActivity(),
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_manage -> {
+                val newUser: User = User(1, "@cubaum", "cubo@baum.com", "1234", DateTime(1998, 6, 15, 4,22))
+                val DAO: UserDAO = UserDAO()
+                DAO.createUser(newUser)
                 replacePlaceholderFragment("Manage")
             }
             R.id.nav_calendar -> {

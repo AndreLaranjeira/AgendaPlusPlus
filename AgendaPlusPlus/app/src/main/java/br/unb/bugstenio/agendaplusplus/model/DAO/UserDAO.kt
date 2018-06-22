@@ -6,7 +6,10 @@ import br.unb.bugstenio.agendaplusplus.model.Object.*
 import br.unb.bugstenio.agendaplusplus.model.Util.*
 import com.android.volley.*
 import com.android.volley.toolbox.*
+import com.google.gson.*
 import org.json.*
+import java.io.UnsupportedEncodingException
+import java.nio.charset.Charset
 import java.util.*
 
 class UserDAO {
@@ -25,7 +28,6 @@ class UserDAO {
         params.put("birth_date", newUser.birth_date)
 
         apiController.post(path, params){response ->
-
         }
     }
 }
