@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.annotation.JsonAutoDetect
+import com.fasterxml.jackson.annotation.PropertyAccessor
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException
@@ -19,6 +21,8 @@ fun Application.main() {
     install(ContentNegotiation) {
         jackson {
             configure(SerializationFeature.INDENT_OUTPUT, true)
+            setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
+            setVisibility(PropertyAccessor.IS_GETTER, JsonAutoDetect.Visibility.NONE)
             registerModule(JodaModule())
         }
     }
@@ -51,6 +55,5 @@ fun Application.main() {
 
 /*
     Future task list:
-    TODO Fix fields is_admin and is_active.
 
  */
