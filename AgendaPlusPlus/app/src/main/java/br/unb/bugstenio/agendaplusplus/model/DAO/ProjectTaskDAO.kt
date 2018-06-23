@@ -21,4 +21,26 @@ class ProjectTaskDAO: NetworkHandler() {
         apiController.post(classPath+path, params){response ->
         }
     }
+
+    fun updateProjectTask(task: Task){
+        val path = "/"
+        val params = JSONObject()
+
+        params.put("id_task", task.id)
+        params.put("task_title", task.title)
+        params.put("task_description", task.description)
+        params.put("task_limit", task.limitDate)
+        params.put("task_done", task.taskDone)
+        params.put("fk_project", task.externalId)
+
+        apiController.update(classPath+path, params){response ->
+        }
+    }
+
+    fun deleteProjectTask(task: Task){
+        val path = "/%d".format(task.id)
+        apiController.delete(classPath+path){response ->
+        }
+    }
+
 }

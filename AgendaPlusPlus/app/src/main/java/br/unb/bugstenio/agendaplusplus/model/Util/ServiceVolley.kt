@@ -50,4 +50,25 @@ class ServiceVolley : ServiceInterface {
 
         BackendVolley.instance?.addToRequestQueue(jsonObjReq, TAG)
     }
+
+    override fun delete(path: String?, completionHandler: (response: JSONObject?) -> Unit) {
+        val ObjReq = object : JsonObjectRequest(Method.DELETE, basePath + path, null,
+                Response.Listener<JSONObject> { response ->
+                    Log.d(TAG, "/DELETE request OK! Response: $response")
+                    completionHandler(response)
+                },
+                Response.ErrorListener { error ->
+                    VolleyLog.e(TAG, "/DELETE request fail! Error: ${error.message}")
+                    completionHandler(null)
+                }) {
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers.put("Content-Type", "application/json")
+                return headers
+            }
+        }
+
+        BackendVolley.instance?.addToRequestQueue(ObjReq, TAG)
+    }
 }

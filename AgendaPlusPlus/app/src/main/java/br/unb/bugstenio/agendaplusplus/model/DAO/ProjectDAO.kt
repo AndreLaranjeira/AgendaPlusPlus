@@ -21,4 +21,25 @@ class ProjectDAO: NetworkHandler() {
         apiController.post(classPath+path, params){response ->
         }
     }
+
+    fun updateProject(project: Project){
+        val path = "/"
+        val params = JSONObject()
+
+        params.put("id_project", project.id)
+        params.put("project_title", project.title)
+        params.put("project_description", project.description)
+        params.put("is_active", project.isActive)
+        params.put("fk_group", project.groupId)
+        params.put("fk_admin", project.adminId)
+
+        apiController.update(classPath+path, params){response ->
+        }
+    }
+
+    fun deleteProject(project: Project){
+        val path = "/%d".format(project.id)
+        apiController.delete(classPath+path){response ->
+        }
+    }
 }

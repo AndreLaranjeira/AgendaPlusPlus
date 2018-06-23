@@ -13,4 +13,7 @@ class APIController constructor(serviceInjection: ServiceInterface): ServiceInte
         service.update(path, params, completionHandler)
     }
 
+    override fun delete(path: String?, completionHandler: (response: JSONObject?) -> Unit) {
+        service.delete(path, completionHandler)
+    }
 }

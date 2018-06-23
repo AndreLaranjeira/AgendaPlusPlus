@@ -6,4 +6,5 @@ import java.nio.channels.CompletionHandler
 interface ServiceInterface {
     fun post(path: String?, params: JSONObject, completionHandler: (response: JSONObject?) -> Unit)
     fun update(path: String?, params: JSONObject, completionHandler: (response: JSONObject?) -> Unit)
+    fun delete(path: String?, completionHandler: (response: JSONObject?) -> Unit)
 }
