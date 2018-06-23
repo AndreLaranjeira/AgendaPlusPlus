@@ -103,33 +103,6 @@ class MainNavigationDrawer : AppCompatActivity(),
         val UserEventDAO = UserEventDAO()
         val UserGroupDAO = UserGroupDAO()
         val UserTaskDAO = UserTaskDAO()
-
-        val newUser = User(6, "@Moaizao", "PORRA@Moas.com", "CRUZEIRO VAI CAIR", DateTime(1998, 6, 15, 4,22))
-        val newGroup = Group(1,"Grupao", "grupo do POST")
-        val newProject = Project(0, "Projetao da Massa", "LADEIRA CORNO SAFADO", true, 1, 5)
-        val newProjectEvent = Event(0, "Evento Top", "Topzera", DateTime(2018, 7, 7, 4,2),
-                DateTime(2018, 7, 7, 5, 10), 4)
-        val newUserEvent = Event(0, "Evento UserTOP", "Topzera da humildade", DateTime(2018, 7, 7, 4,2),
-                DateTime(2018, 7, 7, 5, 10), 5)
-        val newProjectTask = Task(0, "Tarefinha fudida", "LADEIRA VIADAO", DateTime(2017, 2, 28, 2,1),
-                null, 4)
-        val newUserTask = Task(0, "Taskzinha do mano", "RUMO AO HEXA", DateTime(2017, 2, 28, 2,1),
-                null, 1)
-
-        /*
-        UserDAO.createUser(newUser)
-        GroupDAO.createGroup(newGroup)
-        ProjectDAO.createProject(newProject)
-        ProjectEventDAO.createProjectEvent(newProjectEvent)
-        ProjectTaskDAO.createProjectTask(newProjectTask)
-        UserEventDAO.createUserEvent(newUserEvent)
-        UserTaskDAO.createUserTask(newUserTask)
-        UserGroupDAO.createUserGroup(newUser, newGroup, true)
-        */
-        //UserDAO.createUser(newUser)
-        //UserDAO.updateUser(newUser)
-        //UserDAO.deleteUser(newUser)
-        UserDAO.deleteUser(newUser)
     }
 
 }

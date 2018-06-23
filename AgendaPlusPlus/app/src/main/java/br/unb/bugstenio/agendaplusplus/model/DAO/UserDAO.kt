@@ -4,7 +4,6 @@ import br.unb.bugstenio.agendaplusplus.model.Object.*
 import br.unb.bugstenio.agendaplusplus.model.Util.*
 import org.json.*
 
-
 class UserDAO : NetworkHandler(){
     val classPath = "/user"
 
@@ -41,4 +40,15 @@ class UserDAO : NetworkHandler(){
         apiController.delete(classPath+path){response ->
         }
     }
+
+
+    fun getUser(id: Int){
+        val path = "/%d".format(id)
+        apiController.get(classPath + path){response ->
+
+        }
+
+    }
+
+
 }
