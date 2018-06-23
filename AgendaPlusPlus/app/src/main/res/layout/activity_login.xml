@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTintMode="screen"
+    android:backgroundTint="#777"
+    tools:context=".LoginActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/login_center_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <EditText
+        android:id="@+id/login_edit_username"
+        android:layout_width="@dimen/login_edit_width"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_username_label"
+        app:layout_constraintBottom_toTopOf="@id/login_center_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:inputType="textPassword"
+        android:id="@+id/login_edit_password"
+        android:layout_width="@dimen/login_edit_width"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_password_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_center_guideline" />
+
+    <Button
+        android:text="@string/login_button_label"
+        android:id="@+id/login_login_button"
+        android:layout_width="@dimen/login_edit_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/login_edit_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

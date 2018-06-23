@@ -1,5 +1,6 @@
 package br.unb.bugstenio.agendaplusplus
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -33,6 +34,8 @@ class MainNavigationDrawer : AppCompatActivity(),
                         fragment_content.id,
                         CalendarFragment())
                 .commit()
+
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     override fun onBackPressed() {
@@ -60,14 +63,24 @@ class MainNavigationDrawer : AppCompatActivity(),
                         .beginTransaction()
                         .replace(
                                 fragment_content.id,
-                                CalendarFragment())
-                        .commit()
+                                CalendarFragment()
+                        ).commit()
             }
             R.id.nav_tasks -> {
-                replacePlaceholderFragment("Tasks")
+                fragmentManager
+                        .beginTransaction()
+                        .replace(
+                                fragment_content.id,
+                                TaskFragment()
+                        ).commit()
             }
             R.id.nav_events -> {
-                replacePlaceholderFragment("Events")
+                fragmentManager
+                        .beginTransaction()
+                        .replace(
+                                fragment_content.id,
+                                EventFragment()
+                        ).commit()
             }
             R.id.nav_projects -> {
                 replacePlaceholderFragment("Projects")
@@ -78,7 +91,7 @@ class MainNavigationDrawer : AppCompatActivity(),
         return true
     }
 
-    fun replacePlaceholderFragment(arg: String) {
+    private fun replacePlaceholderFragment(arg: String) {
         fragmentManager.beginTransaction()
                 .replace(
                         fragment_content.id,

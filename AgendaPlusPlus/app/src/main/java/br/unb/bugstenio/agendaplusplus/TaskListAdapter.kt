@@ -7,6 +7,8 @@ class TaskListAdapter(taskListDataset : List<Task>) : RecyclerViewListAdapter<Ta
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.linearLayout.findViewWithTag<TextView>("task_title").text =
                 taskListDataset[position].title
+        holder.linearLayout.findViewWithTag<TextView>("task_date").text =
+                taskListDataset[position].limitDate?.toString() ?: ""
         holder.linearLayout.findViewWithTag<TextView>("task_description").text =
                 taskListDataset[position].description
     }

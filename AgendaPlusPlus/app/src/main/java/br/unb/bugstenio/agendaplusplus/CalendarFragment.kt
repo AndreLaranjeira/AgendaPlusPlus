@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import java.util.*
 import android.support.v7.widget.DividerItemDecoration
-import br.unb.bugstenio.agendaplusplus.model.Object.Task
 import br.unb.bugstenio.agendaplusplus.model.Service.TasksServicePlaceholder
 
 
@@ -66,7 +65,7 @@ class CalendarFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_calendar, container, false)
     }
 
-    fun updateRecycler(date: Date){
+    private fun updateRecycler(date: Date){
         (viewAdapter as TaskListAdapter).replaceDataset(TasksServicePlaceholder().getTasksByDate(date))
     }
 }

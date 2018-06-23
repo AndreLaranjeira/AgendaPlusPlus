@@ -16,18 +16,9 @@
     <string name="manage_option">Configurações</string>
 
     <!-- Strings related to login -->
-    <string name="title_activity_login">Entrar</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Senha</string>
-    <string name="action_sign_in">Entrar ou registrar</string>
-    <string name="action_sign_in_short">Entrar</string>
-    <string name="error_invalid_email">Este email é inválido</string>
-    <string name="error_invalid_password">Essa senha é muito curta</string>
-    <string name="error_incorrect_password">Senha incorreta</string>
-    <string name="error_field_required">Este campo é obrigatório</string>
-    <string name="permission_rationale">"Permissões de contato são necessárias para completar email
-        automaticamente."
-    </string>
+    <string name="login_username_label">Nome de Usuário</string>
+    <string name="login_password_label">Senha</string>
+    <string name="login_button_label">Entrar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

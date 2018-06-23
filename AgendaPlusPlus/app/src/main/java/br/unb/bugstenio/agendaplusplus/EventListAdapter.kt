@@ -6,7 +6,12 @@ import br.unb.bugstenio.agendaplusplus.model.Object.Event
 class EventListAdapter(eventListDataset: List<Event>) : RecyclerViewListAdapter<Event>(eventListDataset) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //holder.linearLayout.findViewWithTag<TextView>("")
+        holder.linearLayout.findViewWithTag<TextView>("task_title").text =
+                taskListDataset[position].title
+        holder.linearLayout.findViewWithTag<TextView>("task_date").text =
+                taskListDataset[position].eventDate.toString()
+        holder.linearLayout.findViewWithTag<TextView>("task_description").text =
+                taskListDataset[position].description
     }
 
 }

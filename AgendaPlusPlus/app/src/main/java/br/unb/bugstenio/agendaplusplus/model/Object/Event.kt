@@ -9,6 +9,6 @@ data class Event(
         val title: String,
         val description: String,
         val eventDate: Date,
-        val eventNotification: Date?,
+        val eventNotification: Date? = null,
         val projectId: Long? = null
 )
