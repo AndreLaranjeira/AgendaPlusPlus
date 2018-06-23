@@ -56,9 +56,7 @@ class MainNavigationDrawer : AppCompatActivity(),
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_manage -> {
-                val newUser: User = User(1, "@cubaum", "cubo@baum.com", "1234", DateTime(1998, 6, 15, 4,22))
-                val DAO: UserDAO = UserDAO()
-                DAO.createUser(newUser)
+                serverConnectionTest() // TESTE
                 replacePlaceholderFragment("Manage")
             }
             R.id.nav_calendar -> {
@@ -95,4 +93,37 @@ class MainNavigationDrawer : AppCompatActivity(),
                         })
                 .commit()
     }
+
+    fun serverConnectionTest(){
+        val UserDAO = UserDAO()
+        val GroupDAO = GroupDAO()
+        val ProjectDAO = ProjectDAO()
+        val ProjectEventDAO = ProjectEventDAO()
+        val ProjectTaskDAO = ProjectTaskDAO()
+        val UserEventDAO = UserEventDAO()
+        val UserGroupDAO = UserGroupDAO()
+        val UserTaskDAO = UserTaskDAO()
+
+        val newUser = User(5, "@Moai", "Big@Moas.com", "123", DateTime(1998, 6, 15, 4,22))
+        val newGroup = Group(1,"Grupao", "grupo do POST")
+        val newProject = Project(0, "Projetao da Massa", "LADEIRA CORNO SAFADO", true, 1, 5)
+        val newProjectEvent = Event(0, "Evento Top", "Topzera", DateTime(2018, 7, 7, 4,2),
+                DateTime(2018, 7, 7, 5, 10), 4)
+        val newUserEvent = Event(0, "Evento UserTOP", "Topzera da humildade", DateTime(2018, 7, 7, 4,2),
+                DateTime(2018, 7, 7, 5, 10), 5)
+        val newProjectTask = Task(0, "Tarefinha fudida", "LADEIRA VIADAO", DateTime(2017, 2, 28, 2,1),
+                null, 4)
+        val newUserTask = Task(0, "Taskzinha do mano", "RUMO AO HEXA", DateTime(2017, 2, 28, 2,1),
+                null, 1)
+
+        //UserDAO.createUser(newUser)
+        //GroupDAO.createGroup(newGroup)
+        //ProjectDAO.createProject(newProject)
+        ProjectEventDAO.createProjectEvent(newProjectEvent)
+        ProjectTaskDAO.createProjectTask(newProjectTask)
+        //UserEventDAO.createUserEvent(newUserEvent)
+        //UserTaskDAO.createUserTask(newUserTask)
+        UserGroupDAO.createUserGroup(newUser, newGroup, true)
+    }
+
 }

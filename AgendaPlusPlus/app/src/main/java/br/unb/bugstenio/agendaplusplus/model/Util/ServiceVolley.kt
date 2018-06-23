@@ -29,4 +29,25 @@ class ServiceVolley : ServiceInterface {
 
         BackendVolley.instance?.addToRequestQueue(jsonObjReq, TAG)
     }
+
+    override fun update(path: String?, params: JSONObject, completionHandler: (response: JSONObject?) -> Unit) {
+        val jsonObjReq = object : JsonObjectRequest(Method.PUT, basePath + path, params,
+                Response.Listener<JSONObject> { response ->
+                    Log.d(TAG, "/PUT request OK! Response: $response")
+                    completionHandler(response)
+                },
+                Response.ErrorListener { error ->
+                    VolleyLog.e(TAG, "/PUT request fail! Error: ${error.message}")
+                    completionHandler(null)
+                }) {
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers.put("Content-Type", "application/json")
+                return headers
+            }
+        }
+
+        BackendVolley.instance?.addToRequestQueue(jsonObjReq, TAG)
+    }
 }

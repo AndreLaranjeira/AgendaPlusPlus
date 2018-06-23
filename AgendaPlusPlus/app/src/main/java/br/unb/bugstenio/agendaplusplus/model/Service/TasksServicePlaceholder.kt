@@ -7,7 +7,7 @@ import java.util.*
 class TasksServicePlaceholder {
     private val stringLoca: String = "A\nA\nA\nA\nA\nA"
     private val database : MutableList<DayTask> = mutableListOf(
-            DayTask(getDate(19,6-1,2018), listOf(
+            /*DayTask(getDate(19,6-1,2018), listOf(
                     Task(title = "Recebe", description = stringLoca),
                     Task(title = "Faz nada", description = stringLoca),
                     Task(title = "Manda", description = stringLoca)
@@ -21,7 +21,7 @@ class TasksServicePlaceholder {
                     Task(title = "Manda", description = stringLoca),
                     Task(title = "Faz nada", description = stringLoca),
                     Task(title = "Recebe", description = stringLoca)
-                    ))
+                    ))*/
     )
 
     private fun getDate(day: Int, month: Int, year: Int): Date {
