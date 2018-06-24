@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 
 
-abstract class RecyclerViewListAdapter<T>(protected var taskListDataset: List<out T>) :
+abstract class RecyclerViewListAdapter<T>(protected var taskListDataset: List<T>) :
         RecyclerView.Adapter<RecyclerViewListAdapter.ViewHolder>(){
 
     class ViewHolder(val linearLayout: LinearLayout) : RecyclerView.ViewHolder(linearLayout)
@@ -20,7 +20,7 @@ abstract class RecyclerViewListAdapter<T>(protected var taskListDataset: List<ou
 
     override fun getItemCount(): Int = taskListDataset.size
 
-    fun replaceDataset(newDataset : List<out T>) {
+    fun replaceDataset(newDataset : List<T>) {
         taskListDataset = newDataset
         this.notifyDataSetChanged()
     }

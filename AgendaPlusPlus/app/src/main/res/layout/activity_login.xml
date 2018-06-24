@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTintMode="screen"
-    android:backgroundTint="#777"
     tools:context=".LoginActivity">
 
     <android.support.constraint.Guideline
@@ -20,6 +18,7 @@
         android:layout_width="@dimen/login_edit_width"
         android:layout_height="wrap_content"
         android:hint="@string/login_username_label"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@id/login_center_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
