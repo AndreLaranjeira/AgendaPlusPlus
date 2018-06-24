@@ -88,7 +88,6 @@ class ServiceVolley : ServiceInterface {
                 return headers
             }
         }
-
         BackendVolley.instance?.addToRequestQueue(jsonObjReq, TAG)
     }
 }

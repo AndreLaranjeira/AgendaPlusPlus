@@ -1,7 +1,12 @@
 package br.unb.bugstenio.agendaplusplus.model.DAO
 
+import br.unb.bugstenio.agendaplusplus.Session
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import br.unb.bugstenio.agendaplusplus.model.Util.*
+import com.fasterxml.jackson.annotation.JsonInclude
+import org.joda.time.DateTime
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.*
 import org.json.*
 
 class UserDAO : NetworkHandler(){
@@ -42,13 +47,10 @@ class UserDAO : NetworkHandler(){
     }
 
 
-    fun getUser(id: Int){
-        val path = "/%d".format(id)
+    fun getUser(id_user: Int){
+        val path = "/%d".format(id_user)
+
         apiController.get(classPath + path){response ->
-
         }
-
     }
-
-
 }
