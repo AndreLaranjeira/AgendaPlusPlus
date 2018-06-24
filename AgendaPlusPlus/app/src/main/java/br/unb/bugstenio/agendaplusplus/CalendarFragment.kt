@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_calendar.*
+
 import java.util.*
 import android.support.v7.widget.DividerItemDecoration
 import br.unb.bugstenio.agendaplusplus.model.Service.TasksServicePlaceholder

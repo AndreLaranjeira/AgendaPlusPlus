@@ -6,11 +6,15 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_main_navigation_drawer.*
+import kotlinx.android.synthetic.main.app_bar_main_navigation_drawer.view.*
 import kotlinx.android.synthetic.main.content_main_navigation_drawer.*
+import kotlinx.android.synthetic.main.nav_header_main_navigation_drawer.*
 import java.util.*
 
 class MainNavigationDrawer : AppCompatActivity(),
@@ -21,8 +25,14 @@ class MainNavigationDrawer : AppCompatActivity(),
         setContentView(R.layout.activity_main_navigation_drawer)
         setSupportActionBar(toolbar)
 
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = object : ActionBarDrawerToggle(
+                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            override fun onDrawerOpened(drawerView: View) {
+                nav_header_email.text = Session.user?.email ?: "Erro"
+                nav_header_username.text = Session.user?.username ?: "Erro"
+                super.onDrawerOpened(drawerView)
+            }
+        }
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 

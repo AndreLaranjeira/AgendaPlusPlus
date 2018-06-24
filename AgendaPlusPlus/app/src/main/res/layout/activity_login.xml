@@ -25,11 +25,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:inputType="textPassword"
         android:id="@+id/login_edit_password"
         android:layout_width="@dimen/login_edit_width"
         android:layout_height="wrap_content"
         android:hint="@string/login_password_label"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_center_guideline" />
