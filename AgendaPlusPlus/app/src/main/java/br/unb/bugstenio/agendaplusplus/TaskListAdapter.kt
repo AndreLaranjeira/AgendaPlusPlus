@@ -11,5 +11,9 @@ class TaskListAdapter(taskListDataset : List<Task>) : RecyclerViewListAdapter<Ta
                 taskListDataset[position].limitDate?.toString() ?: ""
         holder.linearLayout.findViewWithTag<TextView>("task_description").text =
                 taskListDataset[position].description
+
+        holder.linearLayout.setOnClickListener {
+            TaskShowActivity.showTask(it.context, taskListDataset[position])
+        }
     }
 }

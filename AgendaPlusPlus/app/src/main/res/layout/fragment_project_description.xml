@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/project_description_title"
+        android:textSize="@dimen/list_title_size"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="Title"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/project_description_description"
+        android:textSize="@dimen/list_description_text_size"
+        android:text="lzkflasldgasjkldhflashjdf"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/project_description_active"
+        android:textSize="@dimen/list_description_text_size"
+        android:text="Estado: Inativo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/project_description_admin"
+        android:textSize="@dimen/list_description_text_size"
+        android:text="Administrador: @cubo"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/project_description_update_button"
+        android:text="@string/update"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/project_description_delete_button"
+        android:text="@string/delete"/>
+
+</LinearLayout>

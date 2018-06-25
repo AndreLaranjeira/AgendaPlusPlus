@@ -22,4 +22,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update">Editar</string>
+    <string name="delete">Deletar</string>
+    <string name="title_activity_project_show">Projeto</string>
+    <string name="title_project">Descrição</string>
+    <string name="title_tasks">Tarefas</string>
+    <string name="title_events">Eventos</string>
+    <string name="title_users">Usuários</string>
 </resources>

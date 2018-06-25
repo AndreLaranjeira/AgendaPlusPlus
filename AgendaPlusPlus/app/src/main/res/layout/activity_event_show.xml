@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_show_title"
+        android:textSize="@dimen/list_title_size"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="Title"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_show_description"
+        android:textSize="@dimen/list_description_text_size"
+        android:text="lzkflasldgasjkldhflashjdf"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_show_event_date"
+        android:textSize="@dimen/list_description_text_size"
+        android:text="Data Realização: 10/10/2018"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_show_event_notification"
+        android:textSize="@dimen/list_description_text_size"
+        android:text="Notificar: 10/10/2019" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_show_project"
+        android:textSize="@dimen/list_description_text_size"
+        android:text="Projeto: Não pertence a nenhum projeto"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_show_update_button"
+        android:text="@string/update"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_show_delete_button"
+        android:text="@string/delete"/>
+
+</LinearLayout>

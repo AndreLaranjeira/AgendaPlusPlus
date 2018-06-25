@@ -13,7 +13,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        login_login_button.setOnClickListener {
+        login_login_button!!.setOnClickListener {
             Session.user = User(
                     0,
                     "@cubo",

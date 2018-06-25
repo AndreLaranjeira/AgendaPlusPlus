@@ -29,8 +29,8 @@ class TaskFragment : Fragment(){
         viewAdapter = TaskListAdapter(listOf(Task(title = "Manda eus", description = "hahaha", limitDate = Date(2018,5,22))))
 
         recyclerView = tasklist.apply {
-            layoutManager = viewManager
-            adapter = viewAdapter
+            layoutManager = viewManager!!
+            adapter = viewAdapter!!
         }
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
     }

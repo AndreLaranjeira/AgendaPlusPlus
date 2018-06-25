@@ -10,11 +10,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.unb.bugstenio.agendaplusplus.model.Object.Event
+import br.unb.bugstenio.agendaplusplus.model.Object.*
 import kotlinx.android.synthetic.main.fragment_list_layout.*
-import java.util.*
 
-class EventFragment : Fragment() {
+class ProjectFragment : Fragment(){
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
@@ -25,9 +24,10 @@ class EventFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewManager = LinearLayoutManager(this.context)!!
-        viewAdapter = EventListAdapter(listOf(
-                Event(title="Evento dos nudes", description = "manda nudes", eventDate = Date(2018,5,22)),
-                Event(title="Eveaaaaaaaaaaaaa", description = "manda aaaaaaaa", eventDate = Date(2019,5,22))
+        viewAdapter = ProjectListAdapter(listOf(
+                Project(title = "huehuehue", description = "asdhfjlasldfla", isActive = true, adminId = 0, groupId = 0),
+                Project(title = "asdasd", description = "asdfasdf", isActive = true, adminId = 0, groupId = 0),
+                Project(title = "asdasdhuehuehue", description = "hljghç", isActive = true, adminId = 0, groupId = 0)
         ))
 
         recyclerView = tasklist.apply {

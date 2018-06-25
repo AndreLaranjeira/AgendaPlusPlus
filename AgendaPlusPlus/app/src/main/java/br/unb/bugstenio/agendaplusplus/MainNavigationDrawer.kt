@@ -93,7 +93,12 @@ class MainNavigationDrawer : AppCompatActivity(),
                         ).commit()
             }
             R.id.nav_projects -> {
-                replacePlaceholderFragment("Projects")
+                fragmentManager
+                        .beginTransaction()
+                        .replace(
+                                fragment_content.id,
+                                ProjectFragment()
+                        ).commit()
             }
         }
 

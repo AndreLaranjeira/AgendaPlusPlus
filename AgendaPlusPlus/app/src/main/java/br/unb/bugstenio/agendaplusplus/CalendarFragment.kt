@@ -15,7 +15,6 @@ import java.util.*
 import android.support.v7.widget.DividerItemDecoration
 import br.unb.bugstenio.agendaplusplus.model.Service.TasksServicePlaceholder
 
-
 class CalendarFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
@@ -25,8 +24,6 @@ class CalendarFragment : Fragment() {
     @TargetApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //arguments?.let {
-        //}
         val calendar = Calendar.getInstance(TimeZone.getDefault())
         calendar_view.setDate(calendar.timeInMillis, true, true)
         calendar_view.setOnDateChangeListener { _, year, month, day ->
@@ -44,7 +41,8 @@ class CalendarFragment : Fragment() {
         }
 
         viewManager = LinearLayoutManager(this.context)
-        viewAdapter = TaskListAdapter(TasksServicePlaceholder().getTasksByDate(calendar.time))
+        viewAdapter = CalendarListAdapter(emptyList())
+        updateRecycler(calendar.time)
 
         recyclerView = tasklist_of_the_day.apply {
             // use this setting to improve performance if you know that changes
@@ -67,6 +65,9 @@ class CalendarFragment : Fragment() {
     }
 
     private fun updateRecycler(date: Date){
-        (viewAdapter as TaskListAdapter).replaceDataset(TasksServicePlaceholder().getTasksByDate(date))
+        (viewAdapter as CalendarListAdapter).replaceDataset(
+                TasksServicePlaceholder().getTasksByDate(date),
+                emptyList()
+        )
     }
 }

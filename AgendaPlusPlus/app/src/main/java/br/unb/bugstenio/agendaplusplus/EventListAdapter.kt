@@ -12,6 +12,10 @@ class EventListAdapter(eventListDataset: List<Event>) : RecyclerViewListAdapter<
                 taskListDataset[position].eventDate.toString()
         holder.linearLayout.findViewWithTag<TextView>("task_description").text =
                 taskListDataset[position].description
+
+        holder.linearLayout.setOnClickListener {
+            EventShowActivity.showEvent(it.context, taskListDataset[position])
+        }
     }
 
 }
