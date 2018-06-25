@@ -1,6 +1,6 @@
 package br.unb.bugstenio.agendaplusplus.model.Object
 
-import java.util.*
+import org.joda.time.*
 
 // Classe para eventos a serem anotados na agenda.
 
@@ -8,7 +8,7 @@ data class Event(
         val id: Long = 0,
         val title: String,
         val description: String,
-        val eventDate: Date,
-        val eventNotification: Date? = null,
-        val projectId: Long? = null
+        val eventDate: DateTime,
+        val eventNotification: DateTime? = null,
+        val externalId: Long? = null
 )

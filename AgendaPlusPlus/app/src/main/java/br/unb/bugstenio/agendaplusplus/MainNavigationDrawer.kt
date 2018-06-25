@@ -6,16 +6,17 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import kotlinx.android.synthetic.main.activity_main_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_main_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_main_navigation_drawer.view.*
 import kotlinx.android.synthetic.main.content_main_navigation_drawer.*
+
+import br.unb.bugstenio.agendaplusplus.model.DAO.*
+import br.unb.bugstenio.agendaplusplus.model.Object.*
+import org.joda.time.*
 import kotlinx.android.synthetic.main.nav_header_main_navigation_drawer.*
-import java.util.*
 
 class MainNavigationDrawer : AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener{
@@ -66,6 +67,7 @@ class MainNavigationDrawer : AppCompatActivity(),
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_manage -> {
+                serverConnectionTest() // TESTE
                 replacePlaceholderFragment("Manage")
             }
             R.id.nav_calendar -> {
@@ -117,4 +119,37 @@ class MainNavigationDrawer : AppCompatActivity(),
                         })
                 .commit()
     }
+
+    fun serverConnectionTest(){
+        val UserDAO = UserDAO()
+        val GroupDAO = GroupDAO()
+        val ProjectDAO = ProjectDAO()
+        val ProjectEventDAO = ProjectEventDAO()
+        val ProjectTaskDAO = ProjectTaskDAO()
+        val UserEventDAO = UserEventDAO()
+        val UserGroupDAO = UserGroupDAO()
+        val UserTaskDAO = UserTaskDAO()
+
+        val newUser = User(5, "@Moai", "Big@Moas.com", "123", DateTime(1998, 6, 15, 4,22))
+        val newGroup = Group(1,"Grupao", "grupo do POST")
+        val newProject = Project(0, "Projetao da Massa", "LADEIRA CORNO SAFADO", true, 1, 5)
+        val newProjectEvent = Event(0, "Evento Top", "Topzera", DateTime(2018, 7, 7, 4,2),
+                DateTime(2018, 7, 7, 5, 10), 4)
+        val newUserEvent = Event(0, "Evento UserTOP", "Topzera da humildade", DateTime(2018, 7, 7, 4,2),
+                DateTime(2018, 7, 7, 5, 10), 5)
+        val newProjectTask = Task(0, "Tarefinha fudida", "LADEIRA VIADAO", DateTime(2017, 2, 28, 2,1),
+                null, 4)
+        val newUserTask = Task(0, "Taskzinha do mano", "RUMO AO HEXA", DateTime(2017, 2, 28, 2,1),
+                null, 1)
+
+        //UserDAO.createUser(newUser)
+        //GroupDAO.createGroup(newGroup)
+        //ProjectDAO.createProject(newProject)
+        ProjectEventDAO.createProjectEvent(newProjectEvent)
+        ProjectTaskDAO.createProjectTask(newProjectTask)
+        //UserEventDAO.createUserEvent(newUserEvent)
+        //UserTaskDAO.createUserTask(newUserTask)
+        UserGroupDAO.createUserGroup(newUser, newGroup, true)
+    }
+
 }

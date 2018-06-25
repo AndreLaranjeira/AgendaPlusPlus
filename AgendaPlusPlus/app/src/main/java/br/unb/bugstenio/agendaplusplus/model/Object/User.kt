@@ -1,6 +1,6 @@
 package br.unb.bugstenio.agendaplusplus.model.Object
 
-import java.util.*
+import org.joda.time.*
 
 // Classe para representar um usuário do aplicativo.
 
@@ -9,5 +9,5 @@ data class User(
         val username: String,
         val email: String,
         val password: String,
-        val birth_date: Date
+        val birth_date: DateTime
 )
