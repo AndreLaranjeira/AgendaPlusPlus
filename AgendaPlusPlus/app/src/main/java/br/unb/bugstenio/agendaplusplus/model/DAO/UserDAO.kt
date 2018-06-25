@@ -1,16 +1,21 @@
 package br.unb.bugstenio.agendaplusplus.model.DAO
 
-import br.unb.bugstenio.agendaplusplus.Session
+import android.util.Log
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import br.unb.bugstenio.agendaplusplus.model.Util.*
-import com.fasterxml.jackson.annotation.JsonInclude
+
 import org.joda.time.DateTime
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.*
 import org.json.*
 
+data class UserCallback(var id_user: Long? =  null,
+                        var username: String? = null,
+                        var email: String? = null,
+                        var password: String? = null,
+                        var birth_date: DateTime? = null)
+
 class UserDAO : NetworkHandler(){
-    val classPath = "/user"
+    private val classPath = "/user"
 
     fun createUser(newUser: User){
         val path = "/"
@@ -46,11 +51,12 @@ class UserDAO : NetworkHandler(){
         }
     }
 
-
-    fun getUser(id_user: Int){
+    fun getUser(id_user: Int) {
         val path = "/%d".format(id_user)
+        apiController.get(classPath + path) { response ->
+            val mapper = ObjectMapper()
+            val parsedUser = mapper.readValue(response.toString(), UserCallback().javaClass)
 
-        apiController.get(classPath + path){response ->
         }
     }
 }

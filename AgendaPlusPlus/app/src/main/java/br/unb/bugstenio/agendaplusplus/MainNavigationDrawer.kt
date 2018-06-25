@@ -104,6 +104,7 @@ class MainNavigationDrawer : AppCompatActivity(),
         val UserEventDAO = UserEventDAO()
         val UserGroupDAO = UserGroupDAO()
         val UserTaskDAO = UserTaskDAO()
+        UserDAO.getUser(1)
 
     }
 

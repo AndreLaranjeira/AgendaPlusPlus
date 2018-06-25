@@ -1,8 +1,10 @@
 package br.unb.bugstenio.agendaplusplus.model.Util
 
 import android.util.Log
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserCallback
 import com.android.volley.*
 import com.android.volley.toolbox.*
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.json.*
 
 class ServiceVolley : ServiceInterface {
@@ -25,6 +27,9 @@ class ServiceVolley : ServiceInterface {
                 headers.put("Content-Type", "application/json")
                 return headers
             }
+            override fun deliverError(error: VolleyError?) {
+                Log.e("SERVER ERROR: ", "POST Request failed. Could not connect to server")
+            }
         }
 
         BackendVolley.instance?.addToRequestQueue(jsonObjReq, TAG)
@@ -45,6 +50,9 @@ class ServiceVolley : ServiceInterface {
                 val headers = HashMap<String, String>()
                 headers.put("Content-Type", "application/json")
                 return headers
+            }
+            override fun deliverError(error: VolleyError?) {
+                Log.e("SERVER ERROR: ", "PUT Request failed. Could not connect to server")
             }
         }
 
@@ -67,6 +75,9 @@ class ServiceVolley : ServiceInterface {
                 headers.put("Content-Type", "application/json")
                 return headers
             }
+            override fun deliverError(error: VolleyError?) {
+                Log.e("SERVER ERROR: ", "DELETE Request failed. Could not connect to server")
+            }
         }
         BackendVolley.instance?.addToRequestQueue(ObjReq, TAG)
     }
@@ -86,6 +97,10 @@ class ServiceVolley : ServiceInterface {
                 val headers = HashMap<String, String>()
                 headers.put("Content-Type", "application/json")
                 return headers
+            }
+
+            override fun deliverError(error: VolleyError?) {
+                Log.e("SERVER ERROR: ", "GET Request failed. Could not connect to server")
             }
         }
         BackendVolley.instance?.addToRequestQueue(jsonObjReq, TAG)
