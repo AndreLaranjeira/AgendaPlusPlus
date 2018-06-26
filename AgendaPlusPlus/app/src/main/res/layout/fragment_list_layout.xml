@@ -11,4 +11,16 @@
         android:scrollbars="vertical"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/list_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_menu_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#64dd17"
+        app:borderWidth="0dp"
+        />
+
 </android.support.constraint.ConstraintLayout>

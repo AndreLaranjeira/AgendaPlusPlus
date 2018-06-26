@@ -30,4 +30,12 @@
         android:text="17/11/1998"
         android:textSize="@dimen/list_title_size" />
 
+    <Button
+        android:tag="user_remove_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remover usuário"
+        android:visibility="gone"
+        />
+
 </LinearLayout>

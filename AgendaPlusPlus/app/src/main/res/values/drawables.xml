@@ -5,4 +5,5 @@
     <item name="ic_menu_projects" type="drawable">@drawable/notebook</item>
     <item name="ic_menu_manage" type="drawable">@drawable/ic_settings</item>
     <item name="ic_menu_users" type="drawable">@drawable/ic_person_black_24dp</item>
+    <item name="ic_menu_add" type="drawable">@drawable/ic_add_black_24dp</item>
 </resources>

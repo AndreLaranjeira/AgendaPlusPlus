@@ -10,11 +10,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import br.unb.bugstenio.agendaplusplus.model.Object.Task
-import br.unb.bugstenio.agendaplusplus.model.Service.TasksServicePlaceholder
 import kotlinx.android.synthetic.main.fragment_list_layout.*
 import org.joda.time.DateTime
-import java.util.*
 
 class TaskFragment : Fragment(){
 
@@ -35,6 +34,10 @@ class TaskFragment : Fragment(){
             adapter = viewAdapter!!
         }
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
+
+        list_fab.setOnClickListener {
+            Toast.makeText(it.context,"bololohahahaha",Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
