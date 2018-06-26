@@ -1,7 +1,6 @@
 package br.unb.bugstenio.agendaplusplus.model.Util
 
 import android.util.Log
-import br.unb.bugstenio.agendaplusplus.model.DAO.UserCallback
 import com.android.volley.*
 import com.android.volley.toolbox.*
 import com.fasterxml.jackson.databind.ObjectMapper
