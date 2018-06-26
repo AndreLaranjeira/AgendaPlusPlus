@@ -21,4 +21,26 @@ class UserEventDAO: NetworkHandler() {
         apiController.post(classPath+path, params){response ->
         }
     }
+
+    fun updateUserEvent(event: Event){
+        val path = "/"
+        val params = JSONObject()
+
+        params.put("id_event", event.id)
+        params.put("event_title", event.title)
+        params.put("event_description", event.description)
+        params.put("event_date", event.eventDate)
+        params.put("event_notification", event.eventNotification)
+        params.put("fk_user", event.externalId)
+
+        apiController.update(classPath+path, params){response ->
+        }
+    }
+
+    fun deleteUserEvent(event: Event){
+        val path = "/%d".format(event.id)
+        apiController.delete(classPath+path){response ->
+        }
+    }
+
 }

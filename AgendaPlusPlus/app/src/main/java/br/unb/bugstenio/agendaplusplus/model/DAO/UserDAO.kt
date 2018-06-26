@@ -1,16 +1,17 @@
 package br.unb.bugstenio.agendaplusplus.model.DAO
 
+import android.util.Log
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import br.unb.bugstenio.agendaplusplus.model.Util.*
+
 import org.joda.time.DateTime
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.json.*
-import java.nio.channels.CompletionHandler
-import java.util.*
 
 
 class UserDAO : NetworkHandler(){
+    private val classPath = "/user"
 
-    val classPath = "/user"
     fun createUser(newUser: User){
         val path = "/"
         val params = JSONObject()
@@ -35,5 +36,25 @@ class UserDAO : NetworkHandler(){
         val path = "/all"
 
         apiController.getMany(classPath+path, completionHandler)
+    }
+
+    fun updateUser(user: User){
+        val path = "/"
+        val params = JSONObject()
+
+        params.put("id_user", user.id)
+        params.put("username", user.username)
+        params.put("email", user.email)
+        params.put("password", user.password)
+        params.put("birth_date", user.birth_date)
+
+        apiController.update(classPath+path, params){response ->
+        }
+    }
+
+    fun deleteUser(user: User){
+        val path = "/%d".format(user.id)
+        apiController.delete(classPath+path){response ->
+        }
     }
 }

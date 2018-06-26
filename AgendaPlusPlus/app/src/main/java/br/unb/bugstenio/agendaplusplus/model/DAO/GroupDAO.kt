@@ -5,8 +5,8 @@ import br.unb.bugstenio.agendaplusplus.model.Util.*
 import org.json.*
 
 class GroupDAO: NetworkHandler() {
-
     val classPath = "/group"
+
     fun createGroup(newGroup: Group){
         val path = "/"
         val params = JSONObject()
@@ -20,5 +20,21 @@ class GroupDAO: NetworkHandler() {
         }
     }
 
+    fun updateGroup(group: Group){
+        val path = "/"
+        val params = JSONObject()
 
+        params.put("id_group", group.id)
+        params.put("group_title", group.title)
+        params.put("group_description", group.description)
+
+        apiController.update(classPath+path, params){response ->
+        }
+    }
+
+    fun deleteGroup(group: Group){
+        val path = "/%d".format(group.id)
+        apiController.delete(classPath+path){response ->
+        }
+    }
 }

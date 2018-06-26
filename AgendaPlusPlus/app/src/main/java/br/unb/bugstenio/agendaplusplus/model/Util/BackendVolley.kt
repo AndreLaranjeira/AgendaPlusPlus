@@ -3,7 +3,8 @@ package br.unb.bugstenio.agendaplusplus.model.Util
 import android.app.Application
 import android.text.TextUtils
 import com.android.volley.*
-import com.android.volley.toolbox.*
+import com.android.volley.toolbox.Volley
+
 
 class BackendVolley : Application(){
     override fun onCreate() {

@@ -127,7 +127,7 @@ class MainNavigationDrawer : AppCompatActivity(),
     var response2: List<User>? = null
 
     fun serverConnectionTest(){
-        val userDAO = UserDAO()
+        val UserDAO = UserDAO()
         val GroupDAO = GroupDAO()
         val ProjectDAO = ProjectDAO()
         val ProjectEventDAO = ProjectEventDAO()
@@ -148,7 +148,7 @@ class MainNavigationDrawer : AppCompatActivity(),
         val newUserTask = Task(1, "Taskzinha do mano", "RUMO AO HEXA", DateTime(2017, 2, 28, 2,1),
                 null, 1)
 
-        userDAO.createUser(newUser)
+        UserDAO.createUser(newUser)
 //        GroupDAO.createGroup(newGroup)
 //        ProjectDAO.createProject(newProject)
 //        ProjectEventDAO.createProjectEvent(newProjectEvent)
@@ -156,13 +156,13 @@ class MainNavigationDrawer : AppCompatActivity(),
 //        UserEventDAO.createUserEvent(newUserEvent)
 //        UserTaskDAO.createUserTask(newUserTask)
 //        UserGroupDAO.createUserGroup(newUser, newGroup, true)
-        userDAO.getUser(1) {
+        UserDAO.getUser(1) {
             response = it?.parseUser()
             Log.i("hahahah", response.toString())
         }
 
 
-        userDAO.getAllUsers{
+        UserDAO.getAllUsers{
             response2 = (it as JSONArray?)?.parseUsers()
             Log.i("hahahah", response2.toString())
         }
