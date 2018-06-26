@@ -3,7 +3,7 @@ package br.unb.bugstenio.agendaplusplus
 import android.widget.TextView
 import br.unb.bugstenio.agendaplusplus.model.Object.Event
 import br.unb.bugstenio.agendaplusplus.model.Object.Task
-import java.util.*
+import org.joda.time.DateTime
 
 class CalendarListAdapter(taskListDataset : List<Listable>) : RecyclerViewListAdapter<Listable>(taskListDataset) {
 
@@ -24,4 +24,4 @@ class CalendarListAdapter(taskListDataset : List<Listable>) : RecyclerViewListAd
 
 }
 
-data class Listable(val title: String, val description: String, val date: Date?)
+data class Listable(val title: String, val description: String, val date: DateTime)

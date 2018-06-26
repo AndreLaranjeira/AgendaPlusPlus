@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import br.unb.bugstenio.agendaplusplus.model.Object.Project
 import br.unb.bugstenio.agendaplusplus.model.Object.User
 import kotlinx.android.synthetic.main.fragment_list_layout.*
+import org.joda.time.DateTime
 import java.util.*
 
 class UserListFragment : Fragment() {
@@ -27,7 +28,8 @@ class UserListFragment : Fragment() {
 
         viewManager = LinearLayoutManager(this.context)!!
         viewAdapter = UserListAdapter(listOf(
-                User(1, "@cubo", "cubo@doiiido.com", "catioro", Date(1998,10,17))
+                User(1, "@cubo", "cubo@doiiido.com", "catioro",
+                        DateTime(1998,10,17,0,0))
         ))
 
         recyclerView = tasklist.apply {

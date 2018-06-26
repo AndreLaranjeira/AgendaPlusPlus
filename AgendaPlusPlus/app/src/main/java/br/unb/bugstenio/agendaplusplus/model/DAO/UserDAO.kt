@@ -2,7 +2,10 @@ package br.unb.bugstenio.agendaplusplus.model.DAO
 
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import br.unb.bugstenio.agendaplusplus.model.Util.*
+import org.joda.time.DateTime
 import org.json.*
+import java.nio.channels.CompletionHandler
+import java.util.*
 
 
 class UserDAO : NetworkHandler(){
@@ -20,5 +23,11 @@ class UserDAO : NetworkHandler(){
 
         apiController.post(classPath+path, params){response ->
         }
+    }
+
+    fun getUser(id: Long, completionHandler: (JSONObject?) -> Unit) {
+        val path = "/$id"
+
+        apiController.get(classPath+path, completionHandler)
     }
 }

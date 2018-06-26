@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import br.unb.bugstenio.agendaplusplus.model.Object.Task
 import br.unb.bugstenio.agendaplusplus.model.Service.TasksServicePlaceholder
 import kotlinx.android.synthetic.main.fragment_list_layout.*
+import org.joda.time.DateTime
 import java.util.*
 
 class TaskFragment : Fragment(){
@@ -26,7 +27,8 @@ class TaskFragment : Fragment(){
         super.onActivityCreated(savedInstanceState)
 
         viewManager = LinearLayoutManager(this.context)
-        viewAdapter = TaskListAdapter(listOf(Task(title = "Manda eus", description = "hahaha", limitDate = Date(2018,5,22))))
+        viewAdapter = TaskListAdapter(listOf(Task(title = "Manda eus", description = "hahaha",
+                limitDate = DateTime(2018,5,22,0,0))))
 
         recyclerView = tasklist.apply {
             layoutManager = viewManager!!

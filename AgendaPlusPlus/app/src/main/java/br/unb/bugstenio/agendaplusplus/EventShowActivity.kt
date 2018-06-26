@@ -8,6 +8,7 @@ import android.widget.Toast
 import br.unb.bugstenio.agendaplusplus.model.Object.Event
 import br.unb.bugstenio.agendaplusplus.model.Object.Task
 import kotlinx.android.synthetic.main.activity_event_show.*
+import org.joda.time.DateTime
 import java.util.*
 
 class EventShowActivity : Activity() {
@@ -23,13 +24,15 @@ class EventShowActivity : Activity() {
             eventId = it.getLongExtra(EventShowActivity.ARG1, 0)
         }
 
-        event = Event(eventId, "hahaha", "ajsdkljaklsd", Date(2018,5,24), Date(2018,5,26))
+        event = Event(eventId, "hahaha", "ajsdkljaklsd",
+                DateTime(2018,5,24,0,0),
+                DateTime(2018,5,26,0,0))
 
         event_show_title.text = event?.title ?: "Erro"
         event_show_description.text = event?.description ?: "Erro"
         event_show_event_date.text = "Data Realização: " + (event?.eventDate ?: "Erro")
         event_show_event_notification.text = "Notificar: " + (event?.eventNotification ?: "Não será notificado")
-        event_show_project.text = "Projeto: " + (event?.projectId ?: "Não pertence a um projeto")
+        event_show_project.text = "Projeto: " + (event?.externalId ?: "Não pertence a um projeto")
 
         event_show_update_button.setOnClickListener {
             Toast.makeText(it.context, "Update $eventId", Toast.LENGTH_LONG).show()

@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import br.unb.bugstenio.agendaplusplus.model.Object.Event
 import kotlinx.android.synthetic.main.fragment_list_layout.*
+import org.joda.time.DateTime
 import java.util.*
 
 class EventFragment : Fragment() {
@@ -26,8 +27,8 @@ class EventFragment : Fragment() {
 
         viewManager = LinearLayoutManager(this.context)!!
         viewAdapter = EventListAdapter(listOf(
-                Event(title="Evento dos nudes", description = "manda nudes", eventDate = Date(2018,5,22)),
-                Event(title="Eveaaaaaaaaaaaaa", description = "manda aaaaaaaa", eventDate = Date(2019,5,22))
+                Event(title="Evento dos nudes", description = "manda nudes", eventDate = DateTime(2018,5,25,0,0)),
+                Event(title="Eveaaaaaaaaaaaaa", description = "manda aaaaaaaa", eventDate = DateTime(2019,5,22,0,0))
         ))
 
         recyclerView = tasklist.apply {

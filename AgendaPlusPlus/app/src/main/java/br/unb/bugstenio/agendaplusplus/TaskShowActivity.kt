@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import br.unb.bugstenio.agendaplusplus.model.Object.Task
 import kotlinx.android.synthetic.main.activity_task_show.*
+import org.joda.time.DateTime
 import java.util.*
 
 class TaskShowActivity : Activity() {
@@ -24,13 +25,15 @@ class TaskShowActivity : Activity() {
             taskId = it.getLongExtra(ARG1, 0)
         }
 
-        task = Task(taskId, "hahaha", "ajsdkljaklsd", Date(2018,5,24), Date(2018,5,26))
+        task = Task(taskId, "hahaha", "ajsdkljaklsd",
+                DateTime(2018,5,24,0,0),
+                DateTime(2018,5,26,0,0))
 
         task_show_title.text = task?.title ?: ""
         task_show_description.text = task?.description ?: ""
         task_show_limit_date.text = "Data Limite: " + (task?.limitDate ?: "Não há data limite")
         task_show_done.text = "Concluído: " + (task?.taskDone ?: "Não foi feito")
-        task_show_project.text = "Projeto: " + (task?.projectId ?: "Não pertence a um projeto")
+        task_show_project.text = "Projeto: " + (task?.externalId ?: "Não pertence a um projeto")
 
         task_show_update_button.setOnClickListener {
             Toast.makeText(it.context, "Update $taskId", Toast.LENGTH_LONG).show()

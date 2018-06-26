@@ -10,5 +10,5 @@ data class Task(
         val description: String,
         val limitDate: DateTime,
         val taskDone : DateTime? = null,
-        val externalId: Long
+        val externalId: Long? = null
 )
