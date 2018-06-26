@@ -18,6 +18,7 @@ import br.unb.bugstenio.agendaplusplus.model.DAO.*
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import org.joda.time.*
 import kotlinx.android.synthetic.main.nav_header_main_navigation_drawer.*
+import org.json.JSONArray
 import org.json.JSONObject
 
 class MainNavigationDrawer : AppCompatActivity(),
@@ -123,9 +124,10 @@ class MainNavigationDrawer : AppCompatActivity(),
     }
 
     var response: User? = null
+    var response2: List<User>? = null
 
     fun serverConnectionTest(){
-        val UserDAO = UserDAO()
+        val userDAO = UserDAO()
         val GroupDAO = GroupDAO()
         val ProjectDAO = ProjectDAO()
         val ProjectEventDAO = ProjectEventDAO()
@@ -146,7 +148,7 @@ class MainNavigationDrawer : AppCompatActivity(),
         val newUserTask = Task(1, "Taskzinha do mano", "RUMO AO HEXA", DateTime(2017, 2, 28, 2,1),
                 null, 1)
 
-//        UserDAO.createUser(newUser)
+        userDAO.createUser(newUser)
 //        GroupDAO.createGroup(newGroup)
 //        ProjectDAO.createProject(newProject)
 //        ProjectEventDAO.createProjectEvent(newProjectEvent)
@@ -154,10 +156,17 @@ class MainNavigationDrawer : AppCompatActivity(),
 //        UserEventDAO.createUserEvent(newUserEvent)
 //        UserTaskDAO.createUserTask(newUserTask)
 //        UserGroupDAO.createUserGroup(newUser, newGroup, true)
-        UserDAO.getUser(1) {
+        userDAO.getUser(1) {
             response = it?.parseUser()
+            Log.i("hahahah", response.toString())
         }
-        Log.i("hahahah", response.toString())
+
+
+        userDAO.getAllUsers{
+            response2 = (it as JSONArray?)?.parseUsers()
+            Log.i("hahahah", response2.toString())
+        }
+
     }
 
 }

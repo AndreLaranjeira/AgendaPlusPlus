@@ -30,4 +30,10 @@ class UserDAO : NetworkHandler(){
 
         apiController.get(classPath+path, completionHandler)
     }
+
+    fun getAllUsers(completionHandler: (JSONArray?) -> Unit) {
+        val path = "/all"
+
+        apiController.getMany(classPath+path, completionHandler)
+    }
 }

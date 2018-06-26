@@ -1,5 +1,6 @@
 package br.unb.bugstenio.agendaplusplus.model.Util
 
+import org.json.JSONArray
 import org.json.JSONObject
 
 class APIController constructor(serviceInjection: ServiceInterface): ServiceInterface {
@@ -15,6 +16,10 @@ class APIController constructor(serviceInjection: ServiceInterface): ServiceInte
 
     override fun get(path: String?, completionHandler: (response: JSONObject?) -> Unit) {
         service.get(path, completionHandler)
+    }
+
+    override fun getMany(path: String?, completionHandler: (response: JSONArray?) -> Unit) {
+        service.getMany(path, completionHandler)
     }
 
 }
