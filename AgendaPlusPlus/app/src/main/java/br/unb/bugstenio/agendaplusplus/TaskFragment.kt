@@ -36,7 +36,7 @@ class TaskFragment : Fragment(){
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
 
         list_fab.setOnClickListener {
-            Toast.makeText(it.context,"bololohahahaha",Toast.LENGTH_LONG).show()
+            TaskCreateEditActivity.createTask(it.context, false, null)
         }
     }
 

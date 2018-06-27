@@ -21,17 +21,21 @@ class LoginActivity : AppCompatActivity() {
             login_progress_bar.visibility = View.VISIBLE
             UserDAO().getAllUsers {
                 login_progress_bar.visibility = View.GONE
-                val users = it?.parseUsers()
-                val user = users?.filter {
-                    it.username == login_edit_username.text.toString()
-                }.orEmpty()
-                if(user.isEmpty()){
-                    login_error_text.text = "Username incorreto!"
-                } else if(user[0].password != login_edit_password.text.toString()) {
-                    login_error_text.text = "Senha incorreta"
+                if(it == null){
+                    login_error_text.text = "Erro de rede!"
                 } else {
-                    Session.user = user[0]
-                    this.finish()
+                    val users = it.parseUsers()
+                    val user = users.filter {
+                        it.username == login_edit_username.text.toString()
+                    }
+                    if (user.isEmpty()) {
+                        login_error_text.text = "Username incorreto!"
+                    } else if (user[0].password != login_edit_password.text.toString()) {
+                        login_error_text.text = "Senha incorreta!"
+                    } else {
+                        Session.user = user[0]
+                        this.finish()
+                    }
                 }
             }
         }

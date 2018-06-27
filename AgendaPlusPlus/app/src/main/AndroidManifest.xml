@@ -28,6 +28,7 @@
         <activity
             android:name=".ProjectShowActivity"
             android:label="@string/title_activity_project_show" />
+        <activity android:name=".TaskCreateEditActivity"></activity>
     </application>
 
 </manifest>
