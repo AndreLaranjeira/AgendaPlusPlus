@@ -38,13 +38,11 @@ class GroupDAO: NetworkHandler() {
         params.put("group_title", group.title)
         params.put("group_description", group.description)
 
-        apiController.update(classPath+path, params){response ->
-        }
+        apiController.update(classPath+path, params, completionHandler)
     }
 
     fun deleteGroup(group: Group, completionHandler: (JSONObject?) -> Unit){
         val path = "/%d".format(group.id)
-        apiController.delete(classPath+path){response ->
-        }
+        apiController.delete(classPath+path, completionHandler)
     }
 }
