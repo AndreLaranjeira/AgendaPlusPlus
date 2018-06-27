@@ -6,8 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import br.unb.bugstenio.agendaplusplus.model.DAO.GroupDAO
 import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserGroupDAO
+import br.unb.bugstenio.agendaplusplus.model.Object.Group
 import br.unb.bugstenio.agendaplusplus.model.Object.Project
+import br.unb.bugstenio.agendaplusplus.model.Object.parseGroup
 import br.unb.bugstenio.agendaplusplus.model.Object.parseProject
 import kotlinx.android.synthetic.main.activity_project_create_edit.*
 
@@ -47,7 +51,18 @@ class ProjectCreateEditActivity : AppCompatActivity() {
             val adminId = Session.user?.id ?: 0
 
             if(projectId == 0.toLong()){
-                
+                GroupDAO().createGroup(Group(0,"","")) {
+                    val group = it?.parseGroup()
+                    ProjectDAO().createProject(Project(
+                            0,
+                            title,
+                            description,
+                            isActive,
+                            group!!.id,
+                            adminId
+                    ))
+                    UserGroupDAO().createUserGroup(Session.user!!, group, true)
+                }
             } else {
                 val groupId = project?.groupId!!
                 ProjectDAO().updateProject(

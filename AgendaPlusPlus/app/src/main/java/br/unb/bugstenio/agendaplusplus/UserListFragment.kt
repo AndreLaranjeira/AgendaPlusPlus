@@ -10,10 +10,16 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserGroupDAO
 import br.unb.bugstenio.agendaplusplus.model.Object.Project
 import br.unb.bugstenio.agendaplusplus.model.Object.User
+import br.unb.bugstenio.agendaplusplus.model.Object.parseUser
+import br.unb.bugstenio.agendaplusplus.model.Object.parseUserGroups
 import kotlinx.android.synthetic.main.fragment_list_layout.*
 import org.joda.time.DateTime
+import org.w3c.dom.UserDataHandler
 import java.util.*
 
 class UserListFragment : Fragment() {
@@ -27,16 +33,28 @@ class UserListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewManager = LinearLayoutManager(this.context)!!
-        viewAdapter = UserListAdapter(listOf(
-                User(1, "@cubo", "cubo@doiiido.com", "catioro",
-                        DateTime(1998,10,17,0,0))
-        ))
+        viewAdapter = UserListAdapter(emptyList())
 
         recyclerView = tasklist.apply {
             layoutManager = viewManager
             adapter = viewAdapter
         }
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
+
+        list_fab.setOnClickListener {
+            UserAddActivity.addUser(it.context)
+        }
+
+        (viewAdapter as UserListAdapter).resetUsers()
+        UserGroupDAO().getUserGroups {
+            val userGroups = it?.parseUserGroups()?.filter {
+                it.group == Session.project!!.groupId
+            }.orEmpty().map {
+                UserDAO().getUser(it.user){
+                    (viewAdapter as UserListAdapter).addUser(it!!.parseUser())
+                }
+            }
+        }
     }
 
     var projectId: Long? = null

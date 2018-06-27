@@ -30,7 +30,12 @@
             android:label="@string/title_activity_project_show" />
         <activity android:name=".TaskCreateEditActivity" />
         <activity android:name=".EventCreateEditActivity" />
-        <activity android:name=".ProjectCreateEditActivity"></activity>
+        <activity android:name=".ProjectCreateEditActivity" />
+        <activity android:name=".UserAddActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

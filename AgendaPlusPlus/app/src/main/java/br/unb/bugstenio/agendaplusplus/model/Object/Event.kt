@@ -28,14 +28,25 @@ fun JSONObject.parseUserEvent(): Event {
 }
 
 fun JSONObject.parseProjectEvent(): Event {
-    return Event(
-            (this["id_event"] as Int).toLong(),
-            this["event_title"] as String,
-            this["event_description"] as String,
-            DateTime(this["event_date"] as Long),
-            DateTime(this["event_notification"] as Long),
-            (this["fk_project"] as Int).toLong()
-    )
+    try{
+        return Event(
+                (this["id_event"] as Int).toLong(),
+                this["event_title"] as String,
+                this["event_description"] as String,
+                DateTime(this["event_date"] as Long),
+                DateTime(this["event_notification"] as Long),
+                (this["fk_project"] as Int).toLong()
+        )
+    } catch (e: Exception){
+        return Event(
+                (this["id_event"] as Int).toLong(),
+                this["event_title"] as String,
+                this["event_description"] as String,
+                DateTime(this["event_date"] as Long),
+                null,
+                (this["fk_project"] as Int).toLong()
+        )
+    }
 }
 
 fun JSONArray.parseUserEvents(): List<Event> {

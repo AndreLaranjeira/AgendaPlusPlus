@@ -76,7 +76,8 @@ class CalendarFragment : Fragment() {
             val tasks = it?.parseUserTasks()?.filter {
                 it.limitDate.year == now.year &&
                 it.limitDate.monthOfYear == now.monthOfYear &&
-                it.limitDate.dayOfMonth == now.dayOfMonth
+                it.limitDate.dayOfMonth == now.dayOfMonth &&
+                it.externalId == (Session.user?.id ?: 0)
             }.orEmpty()
             (viewAdapter as CalendarListAdapter).addTasksDataset(tasks)
         }
@@ -86,7 +87,8 @@ class CalendarFragment : Fragment() {
             val events = it?.parseUserEvents()?.filter {
                 it.eventDate.year == now.year &&
                 it.eventDate.monthOfYear == now.monthOfYear &&
-                it.eventDate.dayOfMonth == now.dayOfMonth
+                it.eventDate.dayOfMonth == now.dayOfMonth &&
+                it.externalId == (Session.user?.id ?: 0)
             }.orEmpty()
             (viewAdapter as CalendarListAdapter).addEventsDataset(events)
         }

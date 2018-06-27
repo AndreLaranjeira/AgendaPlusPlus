@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserDAO
 import br.unb.bugstenio.agendaplusplus.model.Object.Project
+import br.unb.bugstenio.agendaplusplus.model.Object.parseProject
+import br.unb.bugstenio.agendaplusplus.model.Object.parseUser
 import kotlinx.android.synthetic.main.fragment_project_description.*
 
 class ProjectDescriptionFragment : Fragment() {
@@ -24,8 +27,6 @@ class ProjectDescriptionFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        val updateButton = view.findViewById<Button>(R.id.project_description_update_button)
-//        val deleteButton = view.findViewById<Button>(R.id.project_description_delete_button)
 
         arguments?.let{
             projectId = it.getLong(ARG1)
@@ -33,11 +34,23 @@ class ProjectDescriptionFragment : Fragment() {
 
         project_description_update_button.setOnClickListener {
             ProjectCreateEditActivity.editProject(it.context, projectId!!)
-            Log.d("teste", "id ${projectId!!}")
         }
 
         project_description_delete_button.setOnClickListener {
             ProjectDAO().deleteProject(Project(projectId!!, "", "", true, 0, 0))
+        }
+
+        ProjectDAO().getProject(projectId!!){
+            val project = it?.parseProject()
+            project_description_title.text = project?.title ?: "Erro"
+            project_description_description.text = project?.description ?: "Erro"
+            if(project?.isActive ?: false){
+                project_description_active.text = "Ativo"
+            }
+            UserDAO().getUser(project?.adminId!!){
+                val user = it!!.parseUser()
+                project_description_admin.text = user.username
+            }
         }
     }
 

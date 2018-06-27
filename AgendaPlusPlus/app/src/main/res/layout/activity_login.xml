@@ -61,4 +61,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:text="@string/sign_up_button_label"
+        android:id="@+id/login_sign_up_button"
+        android:layout_width="@dimen/login_edit_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/login_login_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

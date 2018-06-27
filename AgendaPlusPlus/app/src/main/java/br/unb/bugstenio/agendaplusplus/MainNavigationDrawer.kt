@@ -72,7 +72,13 @@ class MainNavigationDrawer : AppCompatActivity(),
         when (item.itemId) {
             R.id.nav_manage -> {
                 Session.project = null
-                replacePlaceholderFragment("Manage")
+//                replacePlaceholderFragment("Manage")
+                fragmentManager
+                        .beginTransaction()
+                        .replace(
+                                fragment_content.id,
+                                UserEditFragment()
+                        ).commit()
             }
             R.id.nav_calendar -> {
                 Session.project = null

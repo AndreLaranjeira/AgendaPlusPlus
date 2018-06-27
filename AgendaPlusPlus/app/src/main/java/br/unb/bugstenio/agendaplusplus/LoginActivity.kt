@@ -1,5 +1,6 @@
 package br.unb.bugstenio.agendaplusplus
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -38,6 +39,10 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        login_sign_up_button.setOnClickListener {
+            startActivity(Intent(applicationContext, SignUpActivity::class.java))
         }
     }
 }

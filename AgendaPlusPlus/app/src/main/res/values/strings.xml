@@ -19,9 +19,8 @@
     <string name="login_username_label">Nome de Usuário</string>
     <string name="login_password_label">Senha</string>
     <string name="login_button_label">Entrar</string>
+    <string name="sign_up_button_label">Criar Conta</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="update">Editar</string>
     <string name="delete">Deletar</string>
     <string name="title_activity_project_show">Projeto</string>
@@ -29,4 +28,6 @@
     <string name="title_tasks">Tarefas</string>
     <string name="title_events">Eventos</string>
     <string name="title_users">Usuários</string>
+
+    <string name="title_activity_sign_up">Sign Up</string>
 </resources>

@@ -10,7 +10,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.unb.bugstenio.agendaplusplus.model.DAO.GroupDAO
 import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserGroupDAO
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import kotlinx.android.synthetic.main.fragment_list_layout.*
 
@@ -35,10 +37,19 @@ class ProjectFragment : Fragment(){
 
         ProjectDAO().getAllProjects {
             val projects = it?.parseProjects()
-            //TODO: get groups and filter which projects are mine
-            (viewAdapter as ProjectListAdapter).replaceDataset(
-                projects!!
-            )
+            UserGroupDAO().getUserGroups {
+                val userGroups = it?.parseUserGroups()?.filter{
+                    it.user == Session.user!!.id
+                }.orEmpty()
+                val showProjects = projects!!.filter {project->
+                    userGroups.filter {userGroup ->
+                        project.groupId == userGroup.group
+                    }.isNotEmpty()
+                }
+                (viewAdapter as ProjectListAdapter).replaceDataset(
+                        showProjects
+                )
+            }
         }
 
         list_fab.setOnClickListener {

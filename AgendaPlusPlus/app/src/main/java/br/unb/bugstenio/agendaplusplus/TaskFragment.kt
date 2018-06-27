@@ -39,7 +39,11 @@ class TaskFragment : Fragment(){
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
 
         list_fab.setOnClickListener {
-            TaskCreateEditActivity.createTask(it.context, false, null)
+            if(Session.project == null){
+                TaskCreateEditActivity.createTask(it.context, false, null)
+            } else {
+                TaskCreateEditActivity.createTask(it.context, true, Session.project!!)
+            }
         }
 
         if(Session.project == null){

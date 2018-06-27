@@ -39,7 +39,11 @@ class EventFragment : Fragment() {
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
 
         list_fab.setOnClickListener {
-            EventCreateEditActivity.createEvent(it.context, false, null)
+            if(Session.project == null) {
+                EventCreateEditActivity.createEvent(it.context, false, null)
+            } else {
+                EventCreateEditActivity.createEvent(it.context, true, Session.project!!)
+            }
         }
 
         if(Session.project == null){
