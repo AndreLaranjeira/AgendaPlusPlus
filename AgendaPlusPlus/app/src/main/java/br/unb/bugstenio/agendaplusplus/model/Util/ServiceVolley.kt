@@ -81,7 +81,6 @@ class ServiceVolley : ServiceInterface {
         BackendVolley.instance?.addToRequestQueue(ObjReq, TAG)
     }
 
-
     override fun get(path: String?, completionHandler: (response: JSONObject?) -> Unit) {
         val jsonObjReq = object : JsonObjectRequest(Method.GET, basePath + path, null,
                 Response.Listener<JSONObject> { response ->
@@ -97,6 +96,9 @@ class ServiceVolley : ServiceInterface {
                 val headers = HashMap<String, String>()
                 headers.put("Content-Type", "application/json")
                 return headers
+            }
+            override fun deliverError(error: VolleyError?) {
+                Log.e("SERVER ERROR: ", "GET Request failed. Could not connect to server")
             }
         }
         BackendVolley.instance?.addToRequestQueue(jsonObjReq, TAG)

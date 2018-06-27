@@ -2,6 +2,7 @@ package br.unb.bugstenio.agendaplusplus.model.DAO
 
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import br.unb.bugstenio.agendaplusplus.model.Util.*
+import org.json.JSONArray
 import org.json.JSONObject
 
 class ProjectEventDAO: NetworkHandler() {
@@ -21,6 +22,19 @@ class ProjectEventDAO: NetworkHandler() {
         apiController.post(classPath+path, params){response ->
         }
     }
+
+    fun getProjectEvent(id: Long, completionHandler: (JSONObject?) -> Unit) {
+        val path = "/$id"
+
+        apiController.get(classPath+path, completionHandler)
+    }
+
+    fun getAllProjectEvents(completionHandler: (JSONArray?) -> Unit) {
+        val path = "/all"
+
+        apiController.getMany(classPath+path, completionHandler)
+    }
+
 
     fun updateProjectEvent(event: Event){
         val path = "/"

@@ -20,6 +20,18 @@ class GroupDAO: NetworkHandler() {
         }
     }
 
+    fun getGroup(id: Long, completionHandler: (JSONObject?) -> Unit) {
+        val path = "/$id"
+
+        apiController.get(classPath+path, completionHandler)
+    }
+
+    fun getAllGroups(completionHandler: (JSONArray?) -> Unit) {
+        val path = "/all"
+
+        apiController.getMany(classPath+path, completionHandler)
+    }
+
     fun updateGroup(group: Group){
         val path = "/"
         val params = JSONObject()
