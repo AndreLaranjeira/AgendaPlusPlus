@@ -7,7 +7,7 @@ import org.json.*
 class GroupDAO: NetworkHandler() {
     val classPath = "/group"
 
-    fun createGroup(newGroup: Group){
+    fun createGroup(newGroup: Group, completionHandler: (JSONObject?) -> Unit){
         val path = "/"
         val params = JSONObject()
 
@@ -15,9 +15,7 @@ class GroupDAO: NetworkHandler() {
         params.put("group_title", newGroup.title)
         params.put("group_description", newGroup.description)
 
-        apiController.post(classPath+path, params){response ->
-
-        }
+        apiController.post(classPath+path, params, completionHandler)
     }
 
     fun getGroup(id: Long, completionHandler: (JSONObject?) -> Unit) {
@@ -32,7 +30,7 @@ class GroupDAO: NetworkHandler() {
         apiController.getMany(classPath+path, completionHandler)
     }
 
-    fun updateGroup(group: Group){
+    fun updateGroup(group: Group, completionHandler: (JSONObject?) -> Unit){
         val path = "/"
         val params = JSONObject()
 
@@ -44,7 +42,7 @@ class GroupDAO: NetworkHandler() {
         }
     }
 
-    fun deleteGroup(group: Group){
+    fun deleteGroup(group: Group, completionHandler: (JSONObject?) -> Unit){
         val path = "/%d".format(group.id)
         apiController.delete(classPath+path){response ->
         }
