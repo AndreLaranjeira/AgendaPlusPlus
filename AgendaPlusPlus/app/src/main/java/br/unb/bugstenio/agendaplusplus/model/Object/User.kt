@@ -32,7 +32,7 @@ fun JSONArray.parseUsers(): List<User> {
         try {
             users.add((this[i] as JSONObject).parseUser())
         } catch (e: Exception) {
-            Log.e("Parse", "Não deu pra fazer parse de um JSONArray", e)
+            Log.e("Parse", "Users JSONArray could not be parsed", e)
         }
     }
     return users

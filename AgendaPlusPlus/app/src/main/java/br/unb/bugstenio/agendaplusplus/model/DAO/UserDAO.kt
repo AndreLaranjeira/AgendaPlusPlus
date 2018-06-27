@@ -1,11 +1,8 @@
 package br.unb.bugstenio.agendaplusplus.model.DAO
 
-import android.util.Log
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import br.unb.bugstenio.agendaplusplus.model.Util.*
 
-import org.joda.time.DateTime
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.json.*
 
 

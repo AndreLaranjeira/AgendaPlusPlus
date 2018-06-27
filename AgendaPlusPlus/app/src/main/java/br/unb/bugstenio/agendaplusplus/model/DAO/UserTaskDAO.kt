@@ -2,6 +2,7 @@ package br.unb.bugstenio.agendaplusplus.model.DAO
 
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import br.unb.bugstenio.agendaplusplus.model.Util.*
+import org.json.JSONArray
 import org.json.JSONObject
 
 class UserTaskDAO: NetworkHandler() {
@@ -20,6 +21,18 @@ class UserTaskDAO: NetworkHandler() {
 
         apiController.post(classPath+path, params){response ->
         }
+    }
+
+    fun getUserTask(id: Long, completionHandler: (JSONObject?) -> Unit) {
+        val path = "/$id"
+
+        apiController.get(classPath+path, completionHandler)
+    }
+
+    fun getAllUserTasks(completionHandler: (JSONArray?) -> Unit) {
+        val path = "/all"
+
+        apiController.getMany(classPath+path, completionHandler)
     }
 
     fun updateUserTask(task: Task){
