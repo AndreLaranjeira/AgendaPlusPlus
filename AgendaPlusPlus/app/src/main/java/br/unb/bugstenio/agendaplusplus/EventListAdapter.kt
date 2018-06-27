@@ -9,7 +9,7 @@ class EventListAdapter(eventListDataset: List<Event>) : RecyclerViewListAdapter<
         holder.linearLayout.findViewWithTag<TextView>("task_title").text =
                 taskListDataset[position].title
         holder.linearLayout.findViewWithTag<TextView>("task_date").text =
-                taskListDataset[position].eventDate.toString()
+                taskListDataset[position].eventDate.toString2()
         holder.linearLayout.findViewWithTag<TextView>("task_description").text =
                 taskListDataset[position].description
 

@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_project_show.*
 class ProjectShowActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener  {
 
     var projectId: Long? = null
-    var project: Project? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +22,6 @@ class ProjectShowActivity : AppCompatActivity(), BottomNavigationView.OnNavigati
         intent?.let {
             projectId = it.getLongExtra(ARG1, 0)
         }
-
-        project = Project(10, "hahahahha", "asdasda", true, 10, 2)
 
         navigation.setOnNavigationItemSelectedListener(this)
     }
@@ -35,7 +32,7 @@ class ProjectShowActivity : AppCompatActivity(), BottomNavigationView.OnNavigati
                 .beginTransaction()
                 .replace(
                         project_fragment.id,
-                        ProjectDescriptionFragment.newProjectDescription(project!!)
+                        ProjectDescriptionFragment.newProjectDescription(projectId!!)
                 ).commit()
     }
 
@@ -45,7 +42,7 @@ class ProjectShowActivity : AppCompatActivity(), BottomNavigationView.OnNavigati
                 fragmentManager.beginTransaction()
                         .replace(
                                 project_fragment.id,
-                                ProjectDescriptionFragment.newProjectDescription(project!!)
+                                ProjectDescriptionFragment.newProjectDescription(projectId!!)
                         ).commit()
                 return true
             }
@@ -69,7 +66,7 @@ class ProjectShowActivity : AppCompatActivity(), BottomNavigationView.OnNavigati
                 fragmentManager.beginTransaction()
                         .replace(
                                 project_fragment.id,
-                                UserListFragment.newUserList(project!!)
+                                UserListFragment.newUserList(projectId!!)
                         ).commit()
                 return true
             }

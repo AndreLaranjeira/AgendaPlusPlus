@@ -58,10 +58,10 @@ class UserListFragment : Fragment() {
 
         val ARG1 = "project"
 
-        fun newUserList(project: Project) =
+        fun newUserList(projectId: Long) =
                 UserListFragment().apply {
                     arguments = Bundle().apply {
-                        putLong(ARG1, project.id)
+                        putLong(ARG1, projectId)
                     }
                 }
 

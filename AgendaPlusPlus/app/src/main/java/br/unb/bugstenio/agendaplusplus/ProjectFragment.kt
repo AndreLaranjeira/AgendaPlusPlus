@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectDAO
 import br.unb.bugstenio.agendaplusplus.model.Object.*
 import kotlinx.android.synthetic.main.fragment_list_layout.*
 
@@ -24,17 +25,25 @@ class ProjectFragment : Fragment(){
         super.onActivityCreated(savedInstanceState)
 
         viewManager = LinearLayoutManager(this.context)!!
-        viewAdapter = ProjectListAdapter(listOf(
-                Project(title = "huehuehue", description = "asdhfjlasldfla", isActive = true, adminId = 0, groupId = 0),
-                Project(title = "asdasd", description = "asdfasdf", isActive = true, adminId = 0, groupId = 0),
-                Project(title = "asdasdhuehuehue", description = "hljghç", isActive = true, adminId = 0, groupId = 0)
-        ))
+        viewAdapter = ProjectListAdapter(emptyList())
 
         recyclerView = tasklist.apply {
             layoutManager = viewManager
             adapter = viewAdapter
         }
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
+
+        ProjectDAO().getAllProjects {
+            val projects = it?.parseProjects()
+            //TODO: get groups and filter which projects are mine
+            (viewAdapter as ProjectListAdapter).replaceDataset(
+                projects!!
+            )
+        }
+
+        list_fab.setOnClickListener {
+            ProjectCreateEditActivity.createProject(it.context)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

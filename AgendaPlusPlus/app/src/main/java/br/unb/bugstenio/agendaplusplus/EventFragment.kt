@@ -10,7 +10,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.unb.bugstenio.agendaplusplus.model.Object.Event
+import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectEventDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectTaskDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserEventDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserTaskDAO
+import br.unb.bugstenio.agendaplusplus.model.Object.*
 import kotlinx.android.synthetic.main.fragment_list_layout.*
 import org.joda.time.DateTime
 import java.util.*
@@ -26,16 +30,35 @@ class EventFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewManager = LinearLayoutManager(this.context)!!
-        viewAdapter = EventListAdapter(listOf(
-                Event(title="Evento dos nudes", description = "manda nudes", eventDate = DateTime(2018,5,25,0,0)),
-                Event(title="Eveaaaaaaaaaaaaa", description = "manda aaaaaaaa", eventDate = DateTime(2019,5,22,0,0))
-        ))
+        viewAdapter = EventListAdapter(emptyList())
 
         recyclerView = tasklist.apply {
             layoutManager = viewManager
             adapter = viewAdapter
         }
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
+
+        list_fab.setOnClickListener {
+            EventCreateEditActivity.createEvent(it.context, false, null)
+        }
+
+        if(Session.project == null){
+            UserEventDAO().getAllUserEvents {
+                (viewAdapter as EventListAdapter).replaceDataset(
+                        it?.parseUserEvents()?.filter {
+                            it.externalId == Session.user?.id
+                        }.orEmpty()
+                )
+            }
+        } else {
+            ProjectEventDAO().getAllProjectEvents {
+                (viewAdapter as EventListAdapter).replaceDataset(
+                        it?.parseProjectEvents()?.filter {
+                            it.externalId == Session.project?.id
+                        }.orEmpty()
+                )
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

@@ -13,7 +13,7 @@ class UserListAdapter(listDataset: List<User>) : RecyclerViewListAdapter<User>(l
         holder.linearLayout.findViewWithTag<TextView>("user_email").text =
                 taskListDataset[position].email
         holder.linearLayout.findViewWithTag<TextView>("user_birthdate").text =
-                taskListDataset[position].birth_date.toString()
+                taskListDataset[position].birth_date.toString2()
     }
 
 }

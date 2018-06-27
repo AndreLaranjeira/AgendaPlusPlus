@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Toast
-import br.unb.bugstenio.agendaplusplus.model.Object.Task
+import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectTaskDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserTaskDAO
+import br.unb.bugstenio.agendaplusplus.model.Object.*
 import kotlinx.android.synthetic.main.activity_task_show.*
 import org.joda.time.DateTime
 import java.util.*
@@ -25,22 +27,39 @@ class TaskShowActivity : Activity() {
             taskId = it.getLongExtra(ARG1, 0)
         }
 
-        task = Task(taskId, "hahaha", "ajsdkljaklsd",
-                DateTime(2018,5,24,0,0),
-                DateTime(2018,5,26,0,0))
+        if(Session.project == null){
+            UserTaskDAO().getUserTask(taskId) {
+                task = it?.parseUserTask()!!
 
-        task_show_title.text = task?.title ?: ""
-        task_show_description.text = task?.description ?: ""
-        task_show_limit_date.text = "Data Limite: " + (task?.limitDate ?: "Não há data limite")
-        task_show_done.text = "Concluído: " + (task?.taskDone ?: "Não foi feito")
-        task_show_project.text = "Projeto: " + (task?.externalId ?: "Não pertence a um projeto")
+                task_show_title.text = task?.title ?: ""
+                task_show_description.text = task?.description ?: ""
+                task_show_limit_date.text = "Data Limite: " + (task?.limitDate ?: "Não há data limite")
+                task_show_done.text = "Concluído: " + (task?.taskDone ?: "Não foi feito")
+                task_show_project.text = "Projeto: Não pertence a um projeto"
+            }
+        } else {
+            ProjectTaskDAO().getProjectTask(taskId) {
+                task = it?.parseProjectTask()!!
+
+                task_show_title.text = task?.title ?: ""
+                task_show_description.text = task?.description ?: ""
+                task_show_limit_date.text = "Data Limite: " + (task?.limitDate?.toString2() ?: "Não há data limite")
+                task_show_done.text = "Concluído: " + (task?.taskDone?.toString2() ?: "Não foi feito")
+                task_show_project.text = "Projeto: " + (Session.project?.title ?: "Não pertence a um projeto")
+            }
+        }
 
         task_show_update_button.setOnClickListener {
-            Toast.makeText(it.context, "Update $taskId", Toast.LENGTH_LONG).show()
+            TaskCreateEditActivity.editTask(it.context, taskId, Session.project != null, Session.project)
         }
 
         task_show_delete_button.setOnClickListener {
-            Toast.makeText(it.context, "Delete $taskId", Toast.LENGTH_LONG).show()
+            if(Session.project == null){
+                UserTaskDAO().deleteUserTask(Task(taskId, "", "", DateTime()))
+            } else {
+                ProjectTaskDAO().deleteProjectTask(Task(taskId, "", "", DateTime()))
+            }
+            this.finish()
         }
     }
 

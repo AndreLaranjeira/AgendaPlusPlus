@@ -16,13 +16,14 @@ data class Project(
 )
 
 fun JSONObject.parseProject(): Project {
+    val description = this["project_description"] as String
     return Project(
             (this["id_project"] as Int).toLong(),
             this["project_title"] as String,
-            this["project_description"] as String,
+            if(description != "null") description else "",
             this["is_active"] as Boolean,
-            this["fk_group"] as Long,
-            this["fk_admin"] as Long
+            (this["fk_group"] as Int).toLong(),
+            (this["fk_admin"] as Int).toLong()
     )
 }
 

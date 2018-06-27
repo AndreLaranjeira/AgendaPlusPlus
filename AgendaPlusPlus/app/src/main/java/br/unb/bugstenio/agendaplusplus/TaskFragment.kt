@@ -11,7 +11,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectTaskDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserTaskDAO
 import br.unb.bugstenio.agendaplusplus.model.Object.Task
+import br.unb.bugstenio.agendaplusplus.model.Object.parseProjectTasks
+import br.unb.bugstenio.agendaplusplus.model.Object.parseUserTasks
 import kotlinx.android.synthetic.main.fragment_list_layout.*
 import org.joda.time.DateTime
 
@@ -26,8 +30,7 @@ class TaskFragment : Fragment(){
         super.onActivityCreated(savedInstanceState)
 
         viewManager = LinearLayoutManager(this.context)
-        viewAdapter = TaskListAdapter(listOf(Task(title = "Manda eus", description = "hahaha",
-                limitDate = DateTime(2018,5,22,0,0))))
+        viewAdapter = TaskListAdapter(emptyList())
 
         recyclerView = tasklist.apply {
             layoutManager = viewManager!!
@@ -37,6 +40,24 @@ class TaskFragment : Fragment(){
 
         list_fab.setOnClickListener {
             TaskCreateEditActivity.createTask(it.context, false, null)
+        }
+
+        if(Session.project == null){
+            UserTaskDAO().getAllUserTasks {
+                (viewAdapter as TaskListAdapter).replaceDataset(
+                        it?.parseUserTasks()?.filter {
+                            it.externalId == Session.user?.id
+                        }.orEmpty()
+                )
+            }
+        } else {
+            ProjectTaskDAO().getAllProjectTasks {
+                (viewAdapter as TaskListAdapter).replaceDataset(
+                        it?.parseProjectTasks()?.filter {
+                            it.externalId == Session.project?.id
+                        }.orEmpty()
+                )
+            }
         }
     }
 

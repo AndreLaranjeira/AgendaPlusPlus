@@ -13,7 +13,12 @@ import kotlinx.android.synthetic.main.fragment_calendar.*
 
 import java.util.*
 import android.support.v7.widget.DividerItemDecoration
-import br.unb.bugstenio.agendaplusplus.model.Service.TasksServicePlaceholder
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserEventDAO
+import br.unb.bugstenio.agendaplusplus.model.DAO.UserTaskDAO
+import br.unb.bugstenio.agendaplusplus.model.Object.parseUserEvents
+import br.unb.bugstenio.agendaplusplus.model.Object.parseUserTasks
+import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
 
 class CalendarFragment : Fragment() {
 
@@ -65,9 +70,25 @@ class CalendarFragment : Fragment() {
     }
 
     private fun updateRecycler(date: Date){
-        (viewAdapter as CalendarListAdapter).replaceDataset(
-                TasksServicePlaceholder().getTasksByDate(date),
-                emptyList()
-        )
+        (viewAdapter as CalendarListAdapter).resetDataset()
+        UserTaskDAO().getAllUserTasks {
+            val now = DateTime.now(DateTimeZone.getDefault())
+            val tasks = it?.parseUserTasks()?.filter {
+                it.limitDate.year == now.year &&
+                it.limitDate.monthOfYear == now.monthOfYear &&
+                it.limitDate.dayOfMonth == now.dayOfMonth
+            }.orEmpty()
+            (viewAdapter as CalendarListAdapter).addTasksDataset(tasks)
+        }
+
+        UserEventDAO().getAllUserEvents {
+            val now = DateTime.now(DateTimeZone.getDefault())
+            val events = it?.parseUserEvents()?.filter {
+                it.eventDate.year == now.year &&
+                it.eventDate.monthOfYear == now.monthOfYear &&
+                it.eventDate.dayOfMonth == now.dayOfMonth
+            }.orEmpty()
+            (viewAdapter as CalendarListAdapter).addEventsDataset(events)
+        }
     }
 }

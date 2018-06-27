@@ -5,10 +5,13 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import br.unb.bugstenio.agendaplusplus.model.DAO.ProjectTaskDAO
 import br.unb.bugstenio.agendaplusplus.model.DAO.UserTaskDAO
 import br.unb.bugstenio.agendaplusplus.model.Object.Project
 import br.unb.bugstenio.agendaplusplus.model.Object.Task
+import br.unb.bugstenio.agendaplusplus.model.Object.parseProjectTask
+import br.unb.bugstenio.agendaplusplus.model.Object.parseUserTask
 import kotlinx.android.synthetic.main.activity_task_create_edit.*
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
@@ -32,7 +35,45 @@ class TaskCreateEditActivity : AppCompatActivity() {
         }
 
         if(taskId != 0.toLong()){
-            //TODO: get da task
+            if(projectId == null){
+                UserTaskDAO().getUserTask(taskId!!) {
+                    task = it?.parseUserTask()
+                    if(task != null){
+                        task_create_title.setText(task!!.title, TextView.BufferType.EDITABLE)
+                        task_create_description.setText(task!!.description, TextView.BufferType.EDITABLE)
+                        val limit = task!!.limitDate
+                        task_create_limit_date.updateDate(limit.year, limit.monthOfYear, limit.dayOfMonth)
+                        task_create_limit_time.hour = limit.hourOfDay
+                        task_create_limit_time.minute = limit.minuteOfHour
+                        val done = task!!.taskDone
+                        if (done != null) {
+                            task_create_done.toggle()
+                            task_create_done_date.updateDate(done.year, done.monthOfYear, done.dayOfMonth)
+                            task_create_done_time.hour = done.hourOfDay
+                            task_create_done_time.minute = done.minuteOfHour
+                        }
+                    }
+                }
+            } else {
+                ProjectTaskDAO().getProjectTask(taskId!!) {
+                    task = it?.parseProjectTask()
+                    if(task != null){
+                        task_create_title.setText(task!!.title, TextView.BufferType.EDITABLE)
+                        task_create_description.setText(task!!.description, TextView.BufferType.EDITABLE)
+                        val limit = task!!.limitDate
+                        task_create_limit_date.updateDate(limit.year, limit.monthOfYear, limit.dayOfMonth)
+                        task_create_limit_time.hour = limit.hourOfDay
+                        task_create_limit_time.minute = limit.minuteOfHour
+                        val done = task!!.taskDone
+                        if (done != null) {
+                            task_create_done.toggle()
+                            task_create_done_date.updateDate(done.year, done.monthOfYear, done.dayOfMonth)
+                            task_create_done_time.hour = done.hourOfDay
+                            task_create_done_time.minute = done.minuteOfHour
+                        }
+                    }
+                }
+            }
         }
 
         val now = DateTime.now(DateTimeZone.getDefault())
@@ -99,6 +140,7 @@ class TaskCreateEditActivity : AppCompatActivity() {
                     dao.updateProjectTask(newTask)
                 }
             }
+            this.finish()
         }
     }
 
@@ -117,9 +159,9 @@ class TaskCreateEditActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
 
-        fun editTask(context: Context, task: Task, isFromProject: Boolean, project: Project?) {
+        fun editTask(context: Context, taskId: Long, isFromProject: Boolean, project: Project?) {
             val intent = Intent(context, TaskCreateEditActivity::class.java).apply {
-                putExtra(ARG1, task.id)
+                putExtra(ARG1, taskId)
                 putExtra(ARG2, isFromProject)
                 putExtra(ARG3, project?.id)
             }

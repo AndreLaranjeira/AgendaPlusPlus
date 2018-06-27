@@ -8,7 +8,7 @@ class TaskListAdapter(taskListDataset : List<Task>) : RecyclerViewListAdapter<Ta
         holder.linearLayout.findViewWithTag<TextView>("task_title").text =
                 taskListDataset[position].title
         holder.linearLayout.findViewWithTag<TextView>("task_date").text =
-                taskListDataset[position].limitDate?.toString() ?: ""
+                taskListDataset[position].limitDate.toString2()
         holder.linearLayout.findViewWithTag<TextView>("task_description").text =
                 taskListDataset[position].description
 

@@ -49,7 +49,8 @@ class MainNavigationDrawer : AppCompatActivity(),
                         CalendarFragment())
                 .commit()
 
-        startActivity(Intent(this, LoginActivity::class.java))
+        if(Session.user == null)
+            startActivity(Intent(this, LoginActivity::class.java))
     }
 
     override fun onBackPressed() {
@@ -70,10 +71,11 @@ class MainNavigationDrawer : AppCompatActivity(),
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_manage -> {
-                serverConnectionTest() // TESTE
+                Session.project = null
                 replacePlaceholderFragment("Manage")
             }
             R.id.nav_calendar -> {
+                Session.project = null
                 fragmentManager
                         .beginTransaction()
                         .replace(
@@ -82,6 +84,7 @@ class MainNavigationDrawer : AppCompatActivity(),
                         ).commit()
             }
             R.id.nav_tasks -> {
+                Session.project = null
                 fragmentManager
                         .beginTransaction()
                         .replace(
@@ -90,6 +93,7 @@ class MainNavigationDrawer : AppCompatActivity(),
                         ).commit()
             }
             R.id.nav_events -> {
+                Session.project = null
                 fragmentManager
                         .beginTransaction()
                         .replace(
@@ -123,50 +127,34 @@ class MainNavigationDrawer : AppCompatActivity(),
                 .commit()
     }
 
-    var response: User? = null
-    var response2: List<User>? = null
+    val ARG1 = "user_id"
+    val ARG2 = "username"
+    val ARG3 = "email"
 
-    fun serverConnectionTest(){
-        val UserDAO = UserDAO()
-        val GroupDAO = GroupDAO()
-        val ProjectDAO = ProjectDAO()
-        val ProjectEventDAO = ProjectEventDAO()
-        val ProjectTaskDAO = ProjectTaskDAO()
-        val UserEventDAO = UserEventDAO()
-        val UserGroupDAO = UserGroupDAO()
-        val UserTaskDAO = UserTaskDAO()
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Session.user = User(
+                savedInstanceState?.getLong(ARG1) ?: 0,
+                savedInstanceState?.getString(ARG2) ?: "",
+                savedInstanceState?.getString(ARG3) ?: "",
+                "",
+                DateTime.now()
+        )
 
-        val newUser = User(1, "@Moai", "Big@Moas.com", "123", DateTime(1998, 6, 15, 4,22))
-        val newGroup = Group(1,"Grupao", "grupo do POST")
-        val newProject = Project(1, "Projetao da Massa", "LADEIRA CORNO SAFADO", true, 1, 1 )
-        val newProjectEvent = Event(1, "Evento Top", "Topzera", DateTime(2018, 7, 7, 4,2),
-                DateTime(2018, 7, 7, 5, 10), 7)
-        val newUserEvent = Event(1, "Evento UserTOP", "Topzera da humildade", DateTime(2018, 7, 7, 4,2),
-                DateTime(2018, 7, 7, 5, 10), 5)
-        val newProjectTask = Task(1, "Tarefinha fudida", "LADEIRA VIADAO", DateTime(2017, 2, 28, 2,1),
-                null, 4)
-        val newUserTask = Task(1, "Taskzinha do mano", "RUMO AO HEXA", DateTime(2017, 2, 28, 2,1),
-                null, 1)
-
-        UserDAO.createUser(newUser)
-//        GroupDAO.createGroup(newGroup)
-//        ProjectDAO.createProject(newProject)
-//        ProjectEventDAO.createProjectEvent(newProjectEvent)
-//        ProjectTaskDAO.createProjectTask(newProjectTask)
-//        UserEventDAO.createUserEvent(newUserEvent)
-//        UserTaskDAO.createUserTask(newUserTask)
-//        UserGroupDAO.createUserGroup(newUser, newGroup, true)
-        UserDAO.getUser(1) {
-            response = it?.parseUser()
-            Log.i("hahahah", response.toString())
+        if(Session.user!!.id == 0.toLong()){
+            startActivity(Intent(this, LoginActivity::class.java))
+        } else {
+            UserDAO().getUser(Session.user!!.id) {
+                Session.user = it?.parseUser()
+            }
         }
+    }
 
-
-        UserDAO.getAllUsers{
-            response2 = (it as JSONArray?)?.parseUsers()
-            Log.i("hahahah", response2.toString())
-        }
-
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putLong(ARG1, Session.user?.id ?: 0 )
+        outState?.putString(ARG2, Session.user?.username ?: "" )
+        outState?.putString(ARG3, Session.user?.email ?: "" )
     }
 
 }

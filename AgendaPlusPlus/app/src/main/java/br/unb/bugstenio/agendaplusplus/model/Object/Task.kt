@@ -17,25 +17,50 @@ data class Task(
 )
 
 fun JSONObject.parseUserTask(): Task {
-    return Task(
-            (this["id_task"] as Int).toLong(),
-            this["task_title"] as String,
-            this["task_description"] as String,
-            DateTime(this["task_limit"] as Long),
-            DateTime(this["task_done"] as Long),
-            (this["fk_user"] as Int).toLong()
-    )
+    try {
+        return Task(
+                (this["id_task"] as Int).toLong(),
+                this["task_title"] as String,
+                this["task_description"] as String,
+                DateTime(this["task_limit"] as Long),
+                DateTime(this["task_done"] as Long?),
+                (this["fk_user"] as Int).toLong()
+        )
+    } catch (e: Exception) {
+        Log.e("User Parse", "Não pode dar parse em task de user")
+        return Task(
+                (this["id_task"] as Int).toLong(),
+                this["task_title"] as String,
+                this["task_description"] as String,
+                DateTime(this["task_limit"] as Long),
+                null,
+                (this["fk_user"] as Int).toLong()
+        )
+    }
 }
 
 fun JSONObject.parseProjectTask(): Task {
-    return Task(
-            (this["id_task"] as Int).toLong(),
-            this["task_title"] as String,
-            this["task_description"] as String,
-            DateTime(this["task_limit"] as Long),
-            DateTime(this["task_done"] as Long),
-            (this["fk_project"] as Int).toLong()
-    )
+    try{
+        return Task(
+                (this["id_task"] as Int).toLong(),
+                this["task_title"] as String,
+                this["task_description"] as String,
+                DateTime(this["task_limit"] as Long),
+                DateTime(this["task_done"] as Long?),
+                (this["fk_project"] as Int).toLong()
+        )
+    } catch (e: Exception) {
+        Log.e("Project Parse", "Não pode dar parse em task de projeto")
+        return Task(
+                (this["id_task"] as Int).toLong(),
+                this["task_title"] as String,
+                this["task_description"] as String,
+                DateTime(this["task_limit"] as Long),
+                null,
+                (this["fk_project"] as Int).toLong()
+        )
+    }
+
 }
 
 fun JSONArray.parseUserTasks(): List<Task> {

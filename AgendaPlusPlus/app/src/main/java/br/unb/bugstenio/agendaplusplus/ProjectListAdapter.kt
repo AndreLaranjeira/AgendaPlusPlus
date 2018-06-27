@@ -14,6 +14,7 @@ class ProjectListAdapter(projectListDataset: List<Project>) : RecyclerViewListAd
                 taskListDataset[position].description
 
         holder.linearLayout.setOnClickListener {
+            Session.project = taskListDataset[position]
             ProjectShowActivity.showProject(it.context, taskListDataset[position])
         }
     }
