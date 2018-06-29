@@ -2,20 +2,40 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.unb.bugstenio.agendaplusplus">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".model.Util.BackendVolley"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainNavigationDrawer"
+            android:label="@string/title_activity_main_navigation_drawer"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".TaskShowActivity" />
+        <activity android:name=".EventShowActivity" />
+        <activity
+            android:name=".ProjectShowActivity"
+            android:label="@string/title_activity_project_show" />
+        <activity android:name=".TaskCreateEditActivity" />
+        <activity android:name=".EventCreateEditActivity" />
+        <activity android:name=".ProjectCreateEditActivity" />
+        <activity android:name=".UserAddActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

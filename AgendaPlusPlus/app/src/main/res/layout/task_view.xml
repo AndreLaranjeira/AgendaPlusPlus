@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clickable="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:tag="task_title"
+        android:id="@+id/task_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Título super legal"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="@dimen/list_title_size" />
+
+    <TextView
+        android:id="@+id/task_date"
+        android:tag="task_date"
+        android:text="10/10/2018 | 10:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/list_title_size" />
+
+    <TextView
+        android:tag="task_description"
+        android:layout_width="match_parent"
+        android:maxHeight="@dimen/list_max_description_height"
+        android:layout_height="wrap_content"
+        android:text="lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet "
+        android:textSize="@dimen/list_description_text_size" />
+
+</LinearLayout>

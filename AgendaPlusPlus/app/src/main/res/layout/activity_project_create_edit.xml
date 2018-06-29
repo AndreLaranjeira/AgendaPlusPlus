@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProjectCreateEditActivity">
+
+    <TextView
+        android:id="@+id/project_create_activity_title"
+        android:text="Projeto"
+        android:textAlignment="center"
+        android:textSize="@dimen/activity_title_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/project_create_title"
+        android:hint="Título"
+        android:layout_width="@dimen/create_edit_edit_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/project_create_activity_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/project_create_description"
+        android:hint="Descrição"
+        android:layout_width="@dimen/create_edit_edit_width"
+        android:layout_height="@dimen/create_edit_description_height"
+        app:layout_constraintTop_toBottomOf="@id/project_create_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <CheckBox
+        android:id="@+id/project_create_active"
+        android:text="Projeto Ativo"
+        android:textSize="@dimen/list_title_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/project_create_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/project_create_confirm_button"
+        android:text="Confirmar"
+        android:layout_width="@dimen/create_edit_edit_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/project_create_active"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
+</ScrollView>

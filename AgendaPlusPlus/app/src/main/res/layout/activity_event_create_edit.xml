@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".EventCreateEditActivity">
+
+
+        <TextView
+            android:id="@+id/event_create_activity_title"
+            android:text="Evento"
+            android:textAlignment="center"
+            android:textSize="@dimen/activity_title_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <EditText
+            android:id="@+id/event_create_title"
+            android:hint="Título"
+            android:layout_width="@dimen/create_edit_edit_width"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/event_create_activity_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <EditText
+            android:id="@+id/event_create_description"
+            android:hint="Descrição"
+            android:layout_width="@dimen/create_edit_edit_width"
+            android:layout_height="@dimen/create_edit_description_height"
+            app:layout_constraintTop_toBottomOf="@id/event_create_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/event_create_event_date_text"
+            android:text="Data Realização"
+            android:textSize="@dimen/list_title_size"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/event_create_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <DatePicker
+            android:id="@+id/event_create_event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/event_create_event_date_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TimePicker
+            android:id="@+id/event_create_event_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/event_create_event_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <CheckBox
+            android:id="@+id/event_create_notification"
+            android:text="Notificar-me"
+            android:textSize="@dimen/list_title_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/event_create_event_date_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/event_create_notification_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/event_create_notification"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/event_create_notification_date_text"
+                android:text="Data Notificação"
+                android:textSize="@dimen/list_title_size"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <DatePicker
+                android:id="@+id/event_create_notification_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TimePicker
+                android:id="@+id/event_create_notification_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/event_create_confirm_button"
+            android:text="Confirmar"
+            android:layout_width="@dimen/create_edit_edit_width"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/event_create_notification_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

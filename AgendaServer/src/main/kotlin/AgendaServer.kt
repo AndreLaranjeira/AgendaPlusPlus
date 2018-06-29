@@ -34,9 +34,9 @@ fun Application.main() {
         exception<MySQLIntegrityConstraintViolationException> {
             _ -> call.respond(HttpStatusCode.Conflict)
         }
-        exception<Throwable> {
+        /*exception<Throwable> {
             _ -> call.respond(HttpStatusCode.InternalServerError)
-        }
+        }*/
     }
 
     DatabaseFactory.init()

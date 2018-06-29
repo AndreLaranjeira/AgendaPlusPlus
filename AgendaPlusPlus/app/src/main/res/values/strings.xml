@@ -1,3 +1,33 @@
 <resources>
-    <string name="app_name">AgendaPlusPlus</string>
+    <string name="app_name">Agenda Plus Plus</string>
+    <string name="title_activity_main_navigation_drawer">Agenda++</string>
+    <string name="navigation_drawer_open">Abrir menu de navegação</string>
+    <string name="navigation_drawer_close">Fechar menu de navegação</string>
+    <string name="nav_header_title">Agenda++</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Cabeçalho de navegação</string>
+    <string name="action_settings">Configurações</string>
+
+    <!-- Strings for Drawer -->
+    <string name="calendar_option">Calendário</string>
+    <string name="tasks_option">Tarefas</string>
+    <string name="events_option">Eventos</string>
+    <string name="projects_option">Projetos</string>
+    <string name="manage_option">Configurações</string>
+
+    <!-- Strings related to login -->
+    <string name="login_username_label">Nome de Usuário</string>
+    <string name="login_password_label">Senha</string>
+    <string name="login_button_label">Entrar</string>
+    <string name="sign_up_button_label">Criar Conta</string>
+
+    <string name="update">Editar</string>
+    <string name="delete">Deletar</string>
+    <string name="title_activity_project_show">Projeto</string>
+    <string name="title_project">Descrição</string>
+    <string name="title_tasks">Tarefas</string>
+    <string name="title_events">Eventos</string>
+    <string name="title_users">Usuários</string>
+
+    <string name="title_activity_sign_up">Sign Up</string>
 </resources>

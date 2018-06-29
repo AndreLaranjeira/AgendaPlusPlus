@@ -31,8 +31,8 @@ object DatabaseFactory {
         val config = HikariConfig()
         config.driverClassName = "com.mysql.jdbc.Driver"
         config.jdbcUrl = "jdbc:mysql://localhost:3306/AgendaPlusPlus"
-        config.username = "UnB"
-        config.password = "TrabalhosSemestrais"
+        config.username = "Moas"
+        config.password = "admin"
         config.maximumPoolSize = 3
         config.isAutoCommit = false
         config.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
