@@ -19,3 +19,4 @@ AgendaServer/build
 AgendaServer/out
 AgendaServer/gradlew
 AgendaServer/gradlew.bat
+AgendaServer/src/main/resources/db.properties
