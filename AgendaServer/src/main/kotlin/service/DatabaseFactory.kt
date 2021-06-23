@@ -7,6 +7,8 @@ import kotlinx.coroutines.experimental.newFixedThreadPoolContext
 import kotlinx.coroutines.experimental.withContext
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.io.FileInputStream
+import java.util.*
 
 object DatabaseFactory {
 
@@ -28,16 +30,25 @@ object DatabaseFactory {
     }
 
     private fun hikari(): HikariDataSource {
+
         val config = HikariConfig()
+        val dbFile = FileInputStream("src/main/resources/db.properties")
+        val dbProperties: Properties = Properties()
+
+        dbProperties.load(dbFile)
+
         config.driverClassName = "com.mysql.jdbc.Driver"
         config.jdbcUrl = "jdbc:mysql://localhost:3306/AgendaPlusPlus"
-        config.username = "Moas"
-        config.password = "admin"
+        config.username = dbProperties.getProperty("db.username")
+        config.password = dbProperties.getProperty("db.password")
         config.maximumPoolSize = 3
         config.isAutoCommit = false
         config.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
         config.validate()
+        dbFile.close()
+
         return HikariDataSource(config)
+
     }
 
     private val dispatcher: CoroutineContext
