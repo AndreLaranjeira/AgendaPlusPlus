@@ -11,7 +11,7 @@ Universidade de Brasília.
 
 Nome | Matrícula
 ---  | ---
-André Laranjeira | 16/0023777
+André Filipe Caldas Laranjeira | 16/0023777
 Hugo Nascimento Fonseca | 16/0008166
 Jonas Rangel | 17/0146804
 Victor André Gris Costa | 16/0019311
